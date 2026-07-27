@@ -357,6 +357,41 @@
 
   .tag.grey { background: #F3F4F6; color: var(--muted); border-color: var(--border); }
 
+  .project-image {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 4px;
+    background: var(--light);
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+
+  .visit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--indigo-dark);
+    text-decoration: none;
+    margin-top: 4px;
+    transition: gap 0.2s ease;
+  }
+
+  .visit-btn:hover { gap: 10px; }
+
   .project-arrow {
     width: 42px; height: 42px;
     border-radius: 10px;
@@ -641,6 +676,7 @@
   </div>
   <div class="project-grid">
     <div class="project-card wide fade-up">
+      <div class="project-image"><img src="images/angies-knb.jpg" alt="Angie's KnB"></div>
       <div class="project-flag">🇦🇺</div>
       <div class="project-name">Angie's KnB</div>
       <p class="project-desc">Full digital solution for a Melbourne restaurant group — web ordering platform, iOS & Android apps (in progress), admin panel, and ongoing digital marketing.</p>
@@ -652,8 +688,10 @@
         <span class="tag grey">Australia</span>
         <span class="tag grey">📣 Marketing</span>
       </div>
+      <a href="https://angiesknb.com" target="_blank" class="visit-btn">Visit Site →</a>
     </div>
     <div class="project-card narrow fade-up">
+      <div class="project-image"><img src="images/lavanderia-molino.jpg" alt="Lavanderia Molino"></div>
       <div class="project-flag">🇪🇸</div>
       <div class="project-name">Lavandería Molino</div>
       <p class="project-desc">Website redesign for a Barcelona laundry business. Video hero, location info, and mobile-first design.</p>
@@ -662,8 +700,10 @@
         <span class="tag grey">Spain</span>
         <span class="tag grey">Hospitality</span>
       </div>
+      <a href="https://www.lavanderiamolino.com" target="_blank" class="visit-btn">Visit Site →</a>
     </div>
     <div class="project-card narrow fade-up">
+      <div class="project-image"><img src="images/arctic-peptides.jpg" alt="Arctic Peptides"></div>
       <div class="project-flag">🇸🇪</div>
       <div class="project-name">Arctic Peptides</div>
       <p class="project-desc">Product website with admin panel for a Swedish health supplements brand. Manage photos, descriptions, and pricing easily.</p>
@@ -672,8 +712,10 @@
         <span class="tag grey">Sweden</span>
         <span class="tag grey">Health</span>
       </div>
+      <a href="https://arcticpeptides.org" target="_blank" class="visit-btn">Visit Site →</a>
     </div>
     <div class="project-card wide fade-up">
+      <div class="project-image"><img src="images/pharmaco-connect.jpg" alt="Pharmaco Connect"></div>
       <div class="project-flag">🇧🇩</div>
       <div class="project-name">Pharmaco Connect</div>
       <p class="project-desc">Bilingual pharmacy management system for Bangladesh. Inventory, orders, and supplier management in one platform.</p>
@@ -683,8 +725,10 @@
         <span class="tag grey">Healthcare</span>
         <span class="tag grey">Bangladesh</span>
       </div>
+      <a href="https://pharmaco-connect.vercel.app" target="_blank" class="visit-btn">Visit Site →</a>
     </div>
     <div class="project-card full fade-up">
+      <div class="project-image" style="width:220px;height:140px;flex-shrink:0;margin-bottom:0;"><img src="images/ashkonabazar.jpg" alt="Ashkonabazar"></div>
       <div style="flex:1">
         <div class="project-flag">🇧🇩</div>
         <div class="project-name">Ashkonabazar.com</div>
@@ -695,8 +739,8 @@
           <span class="tag grey">📣 Marketing</span>
           <span class="tag grey">Bangladesh</span>
         </div>
+        <a href="https://ashkonabazar.com" target="_blank" class="visit-btn" style="margin-top:12px;">Visit Site →</a>
       </div>
-      <div class="project-arrow">→</div>
     </div>
   </div>
 </section>
