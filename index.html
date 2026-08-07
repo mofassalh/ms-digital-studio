@@ -44,12 +44,12 @@
     .btn-blue:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,95,168,0.3);}
     .btn-ghost{background:#fff;color:var(--text);border:1.5px solid var(--border);font-size:14px;font-weight:600;padding:14px 30px;border-radius:10px;text-decoration:none;transition:border-color 0.15s,transform 0.15s;}
     .btn-ghost:hover{border-color:var(--blue);transform:translateY(-2px);}
-    .hero-stats{display:flex;justify-content:center;gap:56px;padding:36px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:44px;}
-    @media(max-width:600px){.hero-stats{gap:24px;}}
-    .hstat .num{font-size:36px;font-weight:900;letter-spacing:-1.5px;background:linear-gradient(135deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .hstat .lbl{font-size:11px;font-weight:600;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:0.5px;}
-    .hero-trust{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;}
-    .trust-item{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);padding:8px 16px;border-radius:30px;font-size:13px;font-weight:600;color:var(--sub);}
+    .cred-strip{max-width:900px;margin:0 auto;}.cred-strip-headline{font-size:15px;font-weight:600;color:var(--sub);text-align:center;margin-bottom:20px;line-height:1.6;}.cred-strip-headline strong{color:var(--text);font-weight:800;}.cred-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;}.cred-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:18px 16px;text-align:center;}.cred-card-icon{font-size:22px;margin-bottom:10px;}.cred-card-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:6px;}.cred-card-desc{font-size:11.5px;color:var(--muted);line-height:1.5;}.cred-strip-footer{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:12px;}.cred-strip-footer span{font-size:13px;font-weight:600;color:var(--sub);}.cred-countries{display:flex;gap:16px;font-size:13px;font-weight:700;color:var(--blue);}@media(max-width:700px){.cred-cards{grid-template-columns:1fr 1fr;}.cred-strip-footer{flex-direction:column;gap:8px;}}
+    
+    
+    
+    
+    
     .section{padding:96px 48px;}
     .section-alt{background:var(--bg);}
     .section-dark{background:var(--navy);}
@@ -159,16 +159,39 @@
     <a href="#work" class="btn-blue">See Our Work</a>
     <a href="#contact" class="btn-ghost">Start a Project</a>
   </div>
-  <div class="hero-stats h-a5">
-    <div class="hstat"><div class="num" data-target="15">0</div><div class="lbl">Years experience</div></div>
-    <div class="hstat"><div class="num" data-target="4">0</div><div class="lbl">Countries</div></div>
-    <div class="hstat"><div class="num" data-target="8">0</div><div class="lbl">Years at scale</div></div>
-  </div>
-  <div class="hero-trust h-a6">
-    <div class="trust-item"><span>🏢</span> 8+ yrs at Bikroy.com</div>
-    <div class="trust-item"><span>🔐</span> MSc Cyber Security, KTH Sweden</div>
-    <div class="trust-item"><span>🌍</span> AU · ES · SE · BD</div>
-    <div class="trust-item"><span>👥</span> Full P&L experience</div>
+  <div class="cred-strip h-a5">
+    <p class="cred-strip-headline"><strong>15+ years of real business experience</strong> — built into every project we take on.</p>
+    <div class="cred-cards">
+      <div class="cred-card">
+        <div class="cred-card-icon">📊</div>
+        <div class="cred-card-title">P&L & Budgeting</div>
+        <div class="cred-card-desc">Full financial ownership, cost management & reporting</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-card-icon">👥</div>
+        <div class="cred-card-title">Team Leadership</div>
+        <div class="cred-card-desc">Large team hiring, training, KPIs & full accountability</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-card-icon">⚙️</div>
+        <div class="cred-card-title">Operations at Scale</div>
+        <div class="cred-card-desc">End-to-end systems, processes & business infrastructure</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-card-icon">🔐</div>
+        <div class="cred-card-title">Cyber Security</div>
+        <div class="cred-card-desc">MSc, KTH Royal Institute of Technology, Sweden</div>
+      </div>
+    </div>
+    <div class="cred-strip-footer">
+      <span>🌍 Active clients across</span>
+      <div class="cred-countries">
+        <span>🇦🇺 Australia</span>
+        <span>🇪🇸 Spain</span>
+        <span>🇸🇪 Sweden</span>
+        <span>🇧🇩 Bangladesh</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -430,29 +453,7 @@
   }, {threshold: 0.12});
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  function animateCounter(el, target) {
-    let current = 0;
-    const step = target / 40;
-    const timer = setInterval(() => {
-      current += step;
-      if(current >= target){ current = target; clearInterval(timer); }
-      el.textContent = Math.floor(current) + '+';
-    }, 35);
-  }
 
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        e.target.querySelectorAll('.num[data-target]').forEach(num => {
-          animateCounter(num, parseInt(num.getAttribute('data-target')));
-        });
-        statsObserver.unobserve(e.target);
-      }
-    });
-  }, {threshold: 0.5});
-
-  const stats = document.querySelector('.hero-stats');
-  if(stats) statsObserver.observe(stats);
 </script>
 </body>
 </html>
