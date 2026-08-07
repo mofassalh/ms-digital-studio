@@ -1,849 +1,458 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MS Biz Studio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@400;500;600;700;800&display=swapdisplay=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --indigo: #2A6FB8;
-    --indigo-dark: #1E3A6E;
-    --indigo-light: #4DB8E8;
-    --indigo-dim: rgba(42,111,184,0.08);
-    --indigo-border: rgba(42,111,184,0.18);
-    --ink: #111827;
-    --muted: #6B7280;
-    --light: #F9FAFB;
-    --white: #FFFFFF;
-    --border: #E5E7EB;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--white);
-    color: var(--ink);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ANIMATIONS */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 56px;
-    height: 72px;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .logo {
-    
-    font-weight: 800;
-    font-size: 20px;
-    letter-spacing: 0.5px;
-    color: var(--ink);
-    text-decoration: none;
-  }
-
-  .logo span { color: var(--indigo); }
-
-  nav ul { list-style: none; display: flex; gap: 32px; }
-
-  nav ul a {
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-
-  nav ul a:hover { color: var(--ink); }
-
-  .nav-cta {
-    background: var(--indigo) !important;
-    color: var(--white) !important;
-    padding: 10px 22px;
-    border-radius: 8px;
-    font-weight: 600 !important;
-    transition: background 0.2s !important;
-  }
-
-  .nav-cta:hover { background: var(--indigo-dark) !important; }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 160px 32px 100px;
-    background: var(--light);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -150px; right: -150px;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--indigo);
-    background: var(--white);
-    border: 1px solid var(--indigo-border);
-    padding: 8px 18px;
-    border-radius: 100px;
-    margin-bottom: 36px;
-  }
-
-  .badge-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--indigo);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .hero h1 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: clamp(36px, 6vw, 80px);
-    line-height: 1.15;
-    letter-spacing: -0.5px;
-    color: var(--ink);
-    max-width: 720px;
-    margin-bottom: 24px;
-  }
-
-  .hero h1 .accent { color: var(--indigo); }
-
-  .hero-desc {
-    font-size: 17px;
-    color: var(--muted);
-    max-width: 480px;
-    line-height: 1.8;
-    margin-bottom: 40px;
-    font-weight: 400;
-  }
-
-  .hero-buttons {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-bottom: 72px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    background: var(--indigo);
-    color: var(--white);
-    font-weight: 600;
-    font-size: 15px;
-    padding: 14px 32px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
-
-  .btn-primary:hover { background: var(--indigo-dark); transform: translateY(-2px); }
-
-  .btn-secondary {
-    display: inline-block;
-    background: var(--white);
-    color: var(--ink);
-    font-weight: 600;
-    font-size: 15px;
-    padding: 14px 32px;
-    border-radius: 8px;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    transition: border-color 0.2s, transform 0.15s;
-  }
-
-  .btn-secondary:hover { border-color: var(--indigo); transform: translateY(-2px); }
-
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
-  }
-
-  .stat-item {
-    text-align: center;
-    padding: 18px 48px;
-    border-right: 1px solid var(--border);
-  }
-
-  .stat-item:last-child { border-right: none; }
-
-  .stat-num {
-    font-family: 'Inter', sans-serif;
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--indigo);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 5px;
-    font-weight: 500;
-  }
-
-  /* MARQUEE */
-  .marquee-wrap {
-    background: var(--indigo);
-    padding: 14px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .marquee-track {
-    display: inline-flex;
-    animation: marquee 24s linear infinite;
-  }
-
-  .marquee-track span {
-    font-size: 12px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.9);
-    letter-spacing: 1.5px;
-    padding: 0 24px;
-    text-transform: uppercase;
-  }
-
-  .marquee-track span.dot { color: rgba(255,255,255,0.4); padding: 0 6px; }
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* SECTIONS */
-  section { padding: 96px 48px; }
-
-  .section-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
-
-  .section-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--indigo);
-    background: var(--indigo-dim);
-    border: 1px solid var(--indigo-border);
-    padding: 6px 14px;
-    border-radius: 100px;
-    margin-bottom: 18px;
-  }
-
-  .section-title {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(28px, 3.5vw, 44px);
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    color: var(--ink);
-    line-height: 1.2;
-    margin-bottom: 14px;
-  }
-
-  .section-sub {
-    font-size: 16px;
-    color: var(--muted);
-    max-width: 440px;
-    margin: 0 auto 56px;
-    line-height: 1.7;
-  }
-
-  /* PROJECTS */
-  .projects { background: var(--light); }
-
-  .project-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 14px;
-    text-align: left;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .project-card {
-    background: var(--white);
-    border-radius: 14px;
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    border: 1px solid var(--border);
-    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-    cursor: pointer;
-  }
-
-  .project-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--indigo);
-    box-shadow: 0 12px 40px rgba(99,102,241,0.1);
-  }
-
-  .project-card.wide { grid-column: span 7; }
-  .project-card.narrow { grid-column: span 5; }
-  .project-card.full { grid-column: span 12; flex-direction: row; align-items: center; gap: 28px; }
-
-  .project-flag { font-size: 28px; }
-
-  .project-name {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  .project-desc { font-size: 14px; color: var(--muted); line-height: 1.7; flex: 1; }
-
-  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; }
-
-  .tag {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 6px;
-    background: var(--indigo-dim);
-    color: var(--indigo-dark);
-    border: 1px solid var(--indigo-border);
-  }
-
-  .tag.grey { background: #F3F4F6; color: var(--muted); border-color: var(--border); }
-
-  .project-image {
-    width: 100%;
-    height: 180px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 4px;
-    background: var(--light);
-  }
-
-  .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    transition: transform 0.4s ease;
-  }
-
-  .project-card:hover .project-image img {
-    transform: scale(1.05);
-  }
-
-  .visit-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--indigo-dark);
-    text-decoration: none;
-    margin-top: 4px;
-    transition: gap 0.2s ease;
-  }
-
-  .visit-btn:hover { gap: 10px; }
-
-  .project-arrow {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    background: var(--indigo);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 16px;
-    flex-shrink: 0;
-    margin-left: auto;
-  }
-
-  /* SERVICES */
-  .services { background: var(--white); }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    text-align: left;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .service-card {
-    padding: 28px 24px;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    background: var(--light);
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .service-card:hover { border-color: var(--indigo); transform: translateY(-3px); }
-
-  .service-icon {
-    width: 46px; height: 46px;
-    border-radius: 10px;
-    background: var(--indigo-dim);
-    border: 1px solid var(--indigo-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    margin-bottom: 16px;
-  }
-
-  .service-name {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: var(--ink);
-  }
-
-  .service-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
-
-  /* TEAM */
-  .team { background: var(--light); }
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    text-align: left;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .team-card {
-    padding: 28px 24px;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    background: var(--white);
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .team-card:hover { border-color: var(--indigo); transform: translateY(-3px); }
-
-  .team-avatar {
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    background: var(--indigo);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 18px;
-    color: white;
-    margin-bottom: 14px;
-  }
-
-  .team-name {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 4px;
-  }
-
-  .team-role {
-    font-size: 11px;
-    color: var(--indigo);
-    font-weight: 700;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-  }
-
-  .team-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
-
-  /* CONTACT */
-  .contact {
-    background: var(--indigo);
-    text-align: center;
-    padding: 112px 48px;
-  }
-
-  .contact .section-badge {
-    background: rgba(255,255,255,0.15);
-    color: var(--white);
-    border-color: rgba(255,255,255,0.25);
-  }
-
-  .contact .section-title { color: var(--white); }
-
-  .contact p {
-    color: rgba(255,255,255,0.75);
-    font-size: 16px;
-    margin-bottom: 40px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
-  }
-
-  .btn-white {
-    display: inline-block;
-    background: var(--white);
-    color: var(--indigo-dark);
-    font-weight: 700;
-    font-size: 15px;
-    padding: 14px 36px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
-
-  /* FOOTER */
-  footer {
-    background: var(--ink);
-    padding: 32px 56px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  footer .logo { color: var(--white); }
-  footer .logo span { color: var(--indigo-light); }
-  footer p { font-size: 13px; color: var(--muted); }
-
-  /* MOBILE */
-  @media (max-width: 768px) {
-    nav { padding: 14px 20px; }
-    nav ul { display: none; }
-    .hero { padding: 100px 20px 60px; }
-    .hero h1 { letter-spacing: 0; font-size: 34px; line-height: 1.2; }
-    .hero-stats { flex-direction: column; }
-    .hero-stats { flex-direction: row; }
-    .stat-item { border-right: 1px solid var(--border); border-bottom: none; padding: 14px 12px; }
-    .stat-item:last-child { border-bottom: none; }
-    section { padding: 68px 20px; }
-    .project-card.wide,
-    .project-card.narrow,
-    .project-card.full { grid-column: span 12; flex-direction: column; }
-    .services-grid { grid-template-columns: 1fr; }
-    .team-grid { grid-template-columns: 1fr; }
-    footer { padding: 24px 20px; }
-  }
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MS Biz Studio - End-to-End Digital Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--navy:#0F172A;--blue:#1A5FA8;--blue2:#2E8DE0;--text:#0F172A;--sub:#475569;--muted:#94A3B8;--border:#E2E8F0;--bg:#F8FAFC;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:#fff;color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-d1{transition-delay:0.1s;}.reveal-d2{transition-delay:0.2s;}.reveal-d3{transition-delay:0.3s;}.reveal-d4{transition-delay:0.4s;}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+    .nav-logo img{height:32px;}
+    .nav-logo span{font-size:15px;font-weight:800;color:var(--text);letter-spacing:-0.3px;}
+    .nav-links{display:flex;gap:32px;list-style:none;}
+    .nav-links a{font-size:13.5px;font-weight:500;color:var(--sub);text-decoration:none;transition:color 0.15s;}
+    .nav-links a:hover{color:var(--blue);}
+    .nav-cta{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:13.5px;font-weight:700;padding:10px 22px;border-radius:10px;text-decoration:none;}
+    .nav-cta:hover{opacity:0.88;}
+    @media(max-width:700px){nav{padding:0 20px;}.nav-links{display:none;}}
+    .hero{padding:100px 24px 80px;text-align:center;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(46,141,224,0.08) 0%,transparent 70%);pointer-events:none;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    .h-a1{animation:fadeUp 0.6s ease 0.1s both;}
+    .h-a2{animation:fadeUp 0.6s ease 0.25s both;}
+    .h-a3{animation:fadeUp 0.6s ease 0.4s both;}
+    .h-a4{animation:fadeUp 0.6s ease 0.55s both;}
+    .h-a5{animation:fadeUp 0.6s ease 0.7s both;}
+    .h-a6{animation:fadeUp 0.6s ease 0.85s both;}
+    .available{display:inline-flex;align-items:center;gap:8px;background:#F0FDF4;border:1px solid #BBF7D0;color:#15803D;font-size:12px;font-weight:700;padding:7px 16px;border-radius:30px;margin-bottom:28px;}
+    .available .dot{width:7px;height:7px;border-radius:50%;background:#22C55E;animation:blink 2s ease-in-out infinite;}
+    @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+    .hero-h1{font-size:56px;font-weight:900;letter-spacing:-2.5px;line-height:1.05;color:var(--text);margin-bottom:22px;max-width:780px;margin-left:auto;margin-right:auto;}
+    .hero-h1 em{font-style:normal;background:linear-gradient(135deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    @media(max-width:700px){.hero-h1{font-size:34px;letter-spacing:-1.5px;}}
+    .hero-sub{font-size:17px;color:var(--sub);line-height:1.7;max-width:540px;margin:0 auto 36px;}
+    .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:52px;}
+    .btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:14px;font-weight:700;padding:14px 30px;border-radius:10px;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;}
+    .btn-blue:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,95,168,0.3);}
+    .btn-ghost{background:#fff;color:var(--text);border:1.5px solid var(--border);font-size:14px;font-weight:600;padding:14px 30px;border-radius:10px;text-decoration:none;transition:border-color 0.15s,transform 0.15s;}
+    .btn-ghost:hover{border-color:var(--blue);transform:translateY(-2px);}
+    .hero-stats{display:flex;justify-content:center;gap:56px;padding:36px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:44px;}
+    @media(max-width:600px){.hero-stats{gap:24px;}}
+    .hstat .num{font-size:36px;font-weight:900;letter-spacing:-1.5px;background:linear-gradient(135deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .hstat .lbl{font-size:11px;font-weight:600;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:0.5px;}
+    .hero-trust{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;}
+    .trust-item{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);padding:8px 16px;border-radius:30px;font-size:13px;font-weight:600;color:var(--sub);}
+    .section{padding:96px 48px;}
+    .section-alt{background:var(--bg);}
+    .section-dark{background:var(--navy);}
+    .inner{max-width:1080px;margin:0 auto;}
+    @media(max-width:700px){.section{padding:64px 20px;}}
+    .section-head{text-align:center;margin-bottom:52px;}
+    .eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+    .section-dark .eyebrow{color:#93C5FD;}
+    h2{font-size:38px;font-weight:900;letter-spacing:-1px;line-height:1.1;color:var(--text);margin-bottom:14px;}
+    .section-dark h2{color:#fff;}
+    .section-lead{font-size:16px;color:var(--sub);line-height:1.7;max-width:580px;margin:0 auto;}
+    .section-dark .section-lead{color:#94A3B8;}
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);position:relative;gap:8px;}
+    .process-grid::before{content:'';position:absolute;top:27px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--blue),var(--blue2));z-index:0;}
+    @media(max-width:860px){.process-grid{grid-template-columns:1fr 1fr;gap:24px;}.process-grid::before{display:none;}}
+    @media(max-width:500px){.process-grid{grid-template-columns:1fr;}}
+    .process-step{padding:0 16px;text-align:center;position:relative;z-index:1;}
+    .step-circle{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue2));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;margin:0 auto 20px;box-shadow:0 4px 16px rgba(26,95,168,0.3);}
+    .step-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:10px;}
+    .step-desc{font-size:13px;color:var(--sub);line-height:1.65;}
+    .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    @media(max-width:700px){.services-grid{grid-template-columns:1fr;}}
+    .service-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;}
+    .service-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(15,23,42,0.08);border-color:rgba(46,141,224,0.3);}
+    .service-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(26,95,168,0.1),rgba(46,141,224,0.15));display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;}
+    .service-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:6px;}
+    .service-problem{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;}
+    .service-desc{font-size:13.5px;color:var(--sub);line-height:1.65;}
+    .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    @media(max-width:700px){.projects-grid{grid-template-columns:1fr;}}
+    .project-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;}
+    .project-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(15,23,42,0.1);}
+    .project-img{width:100%;height:200px;object-fit:cover;display:block;background:var(--bg);}
+    .project-body{padding:24px;}
+    .project-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+    .project-country{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);}
+    .project-name{font-size:17px;font-weight:800;color:var(--text);margin-bottom:10px;}
+    .project-story{font-size:13.5px;color:var(--sub);line-height:1.65;margin-bottom:14px;}
+    .project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+    .tag{font-size:11px;font-weight:600;background:var(--bg);border:1px solid var(--border);color:var(--sub);padding:3px 10px;border-radius:20px;}
+    .project-link{font-size:13px;font-weight:700;color:var(--blue);text-decoration:none;}
+    .project-link:hover{text-decoration:underline;}
+    .testimonials-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    @media(max-width:700px){.testimonials-grid{grid-template-columns:1fr;}}
+    .tcard{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:32px;transition:background 0.2s;}
+    .tcard:hover{background:rgba(255,255,255,0.08);}
+    .tquote-mark{font-size:56px;line-height:1;color:rgba(46,141,224,0.4);font-family:Georgia,serif;margin-bottom:8px;}
+    .tquote{font-size:15px;font-weight:500;color:#E2E8F0;line-height:1.75;margin-bottom:24px;font-style:italic;}
+    .tauthor{display:flex;align-items:center;gap:12px;}
+    .tavatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue2));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;flex-shrink:0;}
+    .tname{font-size:13.5px;font-weight:700;color:#fff;}
+    .trole{font-size:12px;color:#64748B;margin-top:2px;}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    @media(max-width:700px){.why-grid{grid-template-columns:1fr;}}
+    .why-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:32px;transition:transform 0.2s,box-shadow 0.2s;}
+    .why-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(15,23,42,0.08);}
+    .why-num{font-size:42px;font-weight:900;letter-spacing:-2px;background:linear-gradient(135deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;line-height:1;}
+    .why-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:10px;}
+    .why-desc{font-size:13.5px;color:var(--sub);line-height:1.65;}
+    .team-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:16px;}
+    @media(max-width:860px){.team-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:500px){.team-grid{grid-template-columns:1fr;}}
+    .team-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;transition:transform 0.2s,box-shadow 0.2s;}
+    .team-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(15,23,42,0.08);}
+    .team-card.featured{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue);}
+    .mavatar{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--blue2));display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;margin-bottom:16px;}
+    .mname{font-size:16px;font-weight:800;color:var(--text);margin-bottom:3px;}
+    .mrole{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--blue);margin-bottom:14px;}
+    .mbio{font-size:13px;color:var(--sub);line-height:1.7;}
+    .mbio strong{color:var(--text);font-weight:700;}
+    .mtags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
+    .cta-inner{max-width:620px;margin:0 auto;text-align:center;}
+    .cta-inner p{font-size:16px;color:#94A3B8;line-height:1.7;margin-bottom:36px;}
+    .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+    .btn-white{background:#fff;color:var(--navy);font-size:14px;font-weight:700;padding:14px 28px;border-radius:10px;text-decoration:none;transition:transform 0.15s;}
+    .btn-white:hover{transform:translateY(-2px);}
+    .btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.2);font-size:14px;font-weight:600;padding:14px 28px;border-radius:10px;text-decoration:none;transition:border-color 0.15s,transform 0.15s;}
+    .btn-outline:hover{border-color:rgba(255,255,255,0.5);transform:translateY(-2px);}
+    footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.06);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;}
+    .footer-logo{display:flex;align-items:center;gap:9px;}
+    .footer-logo img{height:28px;filter:brightness(0) invert(1);opacity:0.6;}
+    .footer-logo span{font-size:14px;font-weight:700;color:rgba(255,255,255,0.4);}
+    footer p{font-size:12px;color:#334155;}
+    @media(max-width:600px){footer{flex-direction:column;gap:12px;text-align:center;padding:24px 20px;}}
+  </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
-  <a href="#" class="logo" style="display:flex;align-items:center;gap:10px;">
-    <img src="images/icon.png" alt="MS Biz Studio" style="height:36px;width:auto;display:block;background:transparent;border:none;object-fit:contain;">
-    <span style="font-weight:800;font-size:18px;color:#1e3a6e;">MS Biz Studio</span>
+  <a class="nav-logo" href="#">
+    <img src="images/icon.png" alt="MS Biz Studio"/>
+    <span>MS Biz Studio</span>
   </a>
-  <ul>
+  <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#projects">Work</a></li>
+    <li><a href="#work">Work</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#team">Team</a></li>
-    <li><a href="#contact" class="nav-cta">Let's talk</a></li>
   </ul>
+  <a class="nav-cta" href="#contact">Let's talk</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge fade-up"><span class="badge-dot"></span> Available for new projects</div>
-  <h1 class="fade-up">We Build <span class="accent">Digital</span> Products That Work.</h1>
-  <p class="hero-desc fade-up">From Melbourne to Barcelona — web apps, mobile apps, and digital marketing for businesses that want real results.</p>
-  <div class="hero-buttons fade-up">
-    <a href="#projects" class="btn-primary">View Our Work</a>
-    <a href="#contact" class="btn-secondary">Start a Project</a>
+  <div class="available h-a1"><div class="dot"></div> Available for new projects</div>
+  <h1 class="hero-h1 h-a2">Most agencies build you a website.<br/><em>We build the system behind your business.</em></h1>
+  <p class="hero-sub h-a3">From your first web presence to automated operations, MS Biz Studio handles the full journey. Founded by someone who spent 15 years actually running businesses, not just building for them.</p>
+  <div class="hero-btns h-a4">
+    <a href="#work" class="btn-blue">See Our Work</a>
+    <a href="#contact" class="btn-ghost">Start a Project</a>
   </div>
-  <div class="hero-stats fade-up">
-    <div class="stat-item">
-      <div class="stat-num">5+</div>
-      <div class="stat-label">Live Projects</div>
+  <div class="hero-stats h-a5">
+    <div class="hstat"><div class="num" data-target="15">0</div><div class="lbl">Years experience</div></div>
+    <div class="hstat"><div class="num" data-target="4">0</div><div class="lbl">Countries</div></div>
+    <div class="hstat"><div class="num" data-target="8">0</div><div class="lbl">Years at scale</div></div>
+  </div>
+  <div class="hero-trust h-a6">
+    <div class="trust-item"><span>🏢</span> 8+ yrs at Bikroy.com</div>
+    <div class="trust-item"><span>🔐</span> MSc Cyber Security, KTH Sweden</div>
+    <div class="trust-item"><span>🌍</span> AU · ES · SE · BD</div>
+    <div class="trust-item"><span>👥</span> Full P&L experience</div>
+  </div>
+</section>
+
+<section id="about" class="section section-alt">
+  <div class="inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">How We Work</div>
+      <h2>From day one to scale — one team, all the way.</h2>
+      <p class="section-lead">Most businesses juggle 3-4 vendors to get digital operations running. We handle it end-to-end, without the handoff chaos.</p>
     </div>
-    <div class="stat-item">
-      <div class="stat-num">4</div>
-      <div class="stat-label">Countries</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">2026</div>
-      <div class="stat-label">Founded</div>
+    <div class="process-grid">
+      <div class="process-step reveal reveal-d1">
+        <div class="step-circle">01</div>
+        <div class="step-title">Understand your business</div>
+        <p class="step-desc">We start with your operations, not a template. Where are you losing time and revenue? Most clients are surprised how much we ask before opening a code editor.</p>
+      </div>
+      <div class="process-step reveal reveal-d2">
+        <div class="step-circle">02</div>
+        <div class="step-title">Build what you actually need</div>
+        <p class="step-desc">Website, mobile app, ordering system, admin panel — we build for your real workflow. One team builds it all so nothing breaks between the pieces.</p>
+      </div>
+      <div class="process-step reveal reveal-d3">
+        <div class="step-circle">03</div>
+        <div class="step-title">Launch and hand over control</div>
+        <p class="step-desc">We don't hand over a link and disappear. Everything is tested and your team is trained before anything goes live.</p>
+      </div>
+      <div class="process-step reveal reveal-d4">
+        <div class="step-circle">04</div>
+        <div class="step-title">Grow, automate, improve</div>
+        <p class="step-desc">After launch we automate manual tasks, set up reporting dashboards, and keep improving what drives your revenue.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section class="services" id="about">
-  <div class="section-inner">
-    <span class="section-badge fade-up">About Us</span>
-    <h2 class="section-title fade-up">One Team. Every Digital Need.</h2>
-    <p class="section-sub fade-up" style="max-width:640px;">We started MS Biz Studio with a simple belief: every growing business deserves an end-to-end digital partner. Not just a developer. Not just a marketer. A team that understands the full picture — web, app, and growth — and builds it together.</p>
-  </div>
-  <div class="services-grid">
-    <div class="service-card fade-up">
-      <div class="service-icon">🎯</div>
-      <div class="service-name">Our Mission</div>
-      <p class="service-desc">Help small and mid-sized businesses grow through complete, accessible digital solutions — without juggling multiple vendors.</p>
+<section id="services" class="section">
+  <div class="inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">What We Do</div>
+      <h2>Six ways we grow your business.</h2>
+      <p class="section-lead">Not service lines — outcomes. Every engagement starts with the problem, and we figure out the right solution together.</p>
     </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">🤝</div>
-      <div class="service-name">Our Approach</div>
-      <p class="service-desc">We work as an extension of your team — understanding your business first, then building the technology to match your goals.</p>
-    </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">🌍</div>
-      <div class="service-name">Who We Serve</div>
-      <p class="service-desc">Small and mid-sized businesses across Sweden, Australia, Spain, and Bangladesh — with clients who value long-term partnership.</p>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-d1">
+        <div class="service-icon">🌐</div>
+        <div class="service-title">Web Development</div>
+        <div class="service-problem">Problem: Your website is losing you clients</div>
+        <p class="service-desc">A slow or dated website costs you business every day. We build sites that load fast, look credible on any device, and turn visitors into enquiries.</p>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <div class="service-icon">📱</div>
+        <div class="service-title">Mobile Apps</div>
+        <div class="service-problem">Problem: Your customers are on their phones</div>
+        <p class="service-desc">Orders, bookings, tracking, loyalty — your customers expect a mobile experience. iOS and Android from one codebase, without paying for two builds.</p>
+      </div>
+      <div class="service-card reveal reveal-d3">
+        <div class="service-icon">⚙️</div>
+        <div class="service-title">Admin Panels and Order Management</div>
+        <div class="service-problem">Problem: You're managing operations on WhatsApp</div>
+        <p class="service-desc">Orders through DMs. Inventory in spreadsheets. We build a proper operations system so your team spends time fulfilling, not coordinating.</p>
+      </div>
+      <div class="service-card reveal reveal-d4">
+        <div class="service-icon">🛒</div>
+        <div class="service-title">E-Commerce</div>
+        <div class="service-problem">Problem: You're selling less than you could</div>
+        <p class="service-desc">We build the storefront and the system — product management, cart, checkout, order tracking — as one connected platform that holds up under volume.</p>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <div class="service-icon">📣</div>
+        <div class="service-title">Digital Marketing</div>
+        <div class="service-problem">Problem: Traffic that doesn't convert</div>
+        <p class="service-desc">We run social media and paid ads with one goal: customers who buy. We also build the site, so we make sure the whole journey converts — not just the ad.</p>
+      </div>
+      <div class="service-card reveal reveal-d3">
+        <div class="service-icon">⚡</div>
+        <div class="service-title">Business Automation and Reporting</div>
+        <div class="service-problem">Problem: Your team is busy but not productive</div>
+        <p class="service-desc">We've run large operations teams. We know where manual work kills productivity. We automate the repetitive parts and give you dashboards that show what's happening in your business.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span>Web Development</span><span class="dot">✦</span>
-    <span>Mobile Apps</span><span class="dot">✦</span>
-    <span>Admin Panels</span><span class="dot">✦</span>
-    <span>E-Commerce</span><span class="dot">✦</span>
-    <span>Digital Marketing</span><span class="dot">✦</span>
-    <span>Next.js</span><span class="dot">✦</span>
-    <span>React Native</span><span class="dot">✦</span>
-    <span>Supabase</span><span class="dot">✦</span>
-    <span>Tailwind CSS</span><span class="dot">✦</span>
-    <span>Web Development</span><span class="dot">✦</span>
-    <span>Mobile Apps</span><span class="dot">✦</span>
-    <span>Admin Panels</span><span class="dot">✦</span>
-    <span>E-Commerce</span><span class="dot">✦</span>
-    <span>Digital Marketing</span><span class="dot">✦</span>
-    <span>Next.js</span><span class="dot">✦</span>
-    <span>React Native</span><span class="dot">✦</span>
-    <span>Supabase</span><span class="dot">✦</span>
-    <span>Tailwind CSS</span><span class="dot">✦</span>
-  </div>
-</div>
-
-<!-- PROJECTS -->
-<section class="projects" id="projects">
-  <div class="section-inner">
-    <span class="section-badge fade-up">Our Work</span>
-    <h2 class="section-title fade-up">Selected Projects</h2>
-    <p class="section-sub fade-up">Real products, real clients — across 4 countries.</p>
-  </div>
-  <div class="project-grid">
-    <div class="project-card wide fade-up">
-      <div class="project-image"><img src="images/angies-knb.jpg" alt="Angie's KnB"></div>
-      <div class="project-flag">🇦🇺</div>
-      <div class="project-name">Angie's KnB</div>
-      <p class="project-desc">Full digital solution for a Melbourne restaurant group — web ordering platform, iOS & Android apps (in progress), admin panel, and ongoing digital marketing.</p>
-      <div class="project-tags">
-        <span class="tag">Next.js</span>
-        <span class="tag">React Native</span>
-        <span class="tag">Supabase</span>
-        <span class="tag grey">Food & Beverage</span>
-        <span class="tag grey">Australia</span>
-        <span class="tag grey">📣 Marketing</span>
-      </div>
-      <a href="https://angiesknb.com" target="_blank" class="visit-btn">Visit Site →</a>
+<section id="work" class="section section-alt">
+  <div class="inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">Selected Work</div>
+      <h2>Real businesses. Real problems solved.</h2>
+      <p class="section-lead">Five clients across four countries. Each came with a specific problem — here's what we built and why.</p>
     </div>
-    <div class="project-card narrow fade-up">
-      <div class="project-image"><img src="images/lavanderia-molino.jpg" alt="Lavanderia Molino"></div>
-      <div class="project-flag">🇪🇸</div>
-      <div class="project-name">Lavandería Molino</div>
-      <p class="project-desc">Website redesign for a Barcelona laundry business. Video hero, location info, and mobile-first design.</p>
-      <div class="project-tags">
-        <span class="tag">HTML/CSS</span>
-        <span class="tag grey">Spain</span>
-        <span class="tag grey">Hospitality</span>
-      </div>
-      <a href="https://www.lavanderiamolino.com" target="_blank" class="visit-btn">Visit Site →</a>
-    </div>
-    <div class="project-card narrow fade-up">
-      <div class="project-image"><img src="images/arctic-peptides.jpg" alt="Arctic Peptides"></div>
-      <div class="project-flag">🇸🇪</div>
-      <div class="project-name">Arctic Peptides</div>
-      <p class="project-desc">Product website with admin panel for a Swedish health supplements brand. Manage photos, descriptions, and pricing easily.</p>
-      <div class="project-tags">
-        <span class="tag">React</span>
-        <span class="tag grey">Sweden</span>
-        <span class="tag grey">Health</span>
-      </div>
-      <a href="https://arcticpeptides.org" target="_blank" class="visit-btn">Visit Site →</a>
-    </div>
-    <div class="project-card wide fade-up">
-      <div class="project-image"><img src="images/pharmaco-connect.jpg" alt="Pharmaco Connect"></div>
-      <div class="project-flag">🇧🇩</div>
-      <div class="project-name">Pharmaco Connect</div>
-      <p class="project-desc">Bilingual pharmacy management system for Bangladesh. Inventory, orders, and supplier management in one platform.</p>
-      <div class="project-tags">
-        <span class="tag">Next.js</span>
-        <span class="tag">Vercel</span>
-        <span class="tag grey">Healthcare</span>
-        <span class="tag grey">Bangladesh</span>
-      </div>
-      <a href="https://pharmaco-connect.vercel.app" target="_blank" class="visit-btn">Visit Site →</a>
-    </div>
-    <div class="project-card full fade-up">
-      <div class="project-image" style="width:220px;height:140px;flex-shrink:0;margin-bottom:0;"><img src="images/ashkonabazar.jpg" alt="Ashkonabazar"></div>
-      <div style="flex:1">
-        <div class="project-flag">🇧🇩</div>
-        <div class="project-name">Ashkonabazar.com</div>
-        <p class="project-desc">E-commerce and digital marketing for a Bangladeshi marketplace. Product listings, categories, order management, and ongoing social media growth.</p>
-        <div class="project-tags" style="margin-top:14px">
-          <span class="tag">Next.js</span>
-          <span class="tag grey">E-Commerce</span>
-          <span class="tag grey">📣 Marketing</span>
-          <span class="tag grey">Bangladesh</span>
+    <div class="projects-grid">
+      <div class="project-card reveal reveal-d1">
+        <img class="project-img" src="images/angies-knb.jpg" alt="Angies KnB"/>
+        <div class="project-body">
+          <div class="project-meta"><span style="font-size:16px;">🇦🇺</span><span class="project-country">Melbourne, Australia</span></div>
+          <div class="project-name">Angie's KnB</div>
+          <p class="project-story">A restaurant group managing orders by phone and walk-in only — no digital system, no visibility. We built a full web ordering platform, iOS and Android apps, and an admin panel so the team manages everything in one place.</p>
+          <div class="project-tags"><span class="tag">Next.js</span><span class="tag">React Native</span><span class="tag">Supabase</span><span class="tag">Marketing</span></div>
+          <a class="project-link" href="https://angiesknb.com" target="_blank">Visit Site</a>
         </div>
-        <a href="https://ashkonabazar.com" target="_blank" class="visit-btn" style="margin-top:12px;">Visit Site →</a>
+      </div>
+      <div class="project-card reveal reveal-d2">
+        <img class="project-img" src="images/pharmaco-connect.jpg" alt="Pharmaco Connect"/>
+        <div class="project-body">
+          <div class="project-meta"><span style="font-size:16px;">🇧🇩</span><span class="project-country">Bangladesh</span></div>
+          <div class="project-name">Pharmaco Connect</div>
+          <p class="project-story">A pharmacy business running inventory and supplier coordination manually across locations. We built a bilingual system covering inventory, orders, and suppliers in one platform.</p>
+          <div class="project-tags"><span class="tag">Next.js</span><span class="tag">Vercel</span><span class="tag">Healthcare</span></div>
+          <a class="project-link" href="https://pharmaco-connect.vercel.app" target="_blank">Visit Site</a>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-d3">
+        <img class="project-img" src="images/arctic-peptides.jpg" alt="Arctic Peptides"/>
+        <div class="project-body">
+          <div class="project-meta"><span style="font-size:16px;">🇸🇪</span><span class="project-country">Sweden</span></div>
+          <div class="project-name">Arctic Peptides</div>
+          <p class="project-story">A supplements brand with no way to update their own catalogue — every change required calling a developer. We built a product site with a full admin panel. They now update everything themselves.</p>
+          <div class="project-tags"><span class="tag">React</span><span class="tag">Admin Panel</span><span class="tag">Health</span></div>
+          <a class="project-link" href="https://arcticpeptides.org" target="_blank">Visit Site</a>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-d4">
+        <img class="project-img" src="images/lavanderia-molino.jpg" alt="Lavanderia Molino"/>
+        <div class="project-body">
+          <div class="project-meta"><span style="font-size:16px;">🇪🇸</span><span class="project-country">Barcelona, Spain</span></div>
+          <div class="project-name">Lavanderia Molino</div>
+          <p class="project-story">A laundry service losing customers to competitors easier to find online. We redesigned their site with a video hero and mobile-first layout — now they lead every local search.</p>
+          <div class="project-tags"><span class="tag">HTML/CSS</span><span class="tag">Mobile-first</span><span class="tag">Spain</span></div>
+          <a class="project-link" href="https://www.lavanderiamolino.com" target="_blank">Visit Site</a>
+        </div>
+      </div>
+      <div class="project-card reveal" style="grid-column:1/-1;">
+        <img class="project-img" src="images/ashkonabazar.jpg" alt="Ashkonabazar" style="height:220px;"/>
+        <div class="project-body">
+          <div class="project-meta"><span style="font-size:16px;">🇧🇩</span><span class="project-country">Bangladesh</span></div>
+          <div class="project-name">Ashkonabazar.com</div>
+          <p class="project-story">A marketplace trying to grow online with no proper e-commerce infrastructure — products listed manually, no order management. We built the full platform: listings, categories, cart, and order management, plus ongoing social media growth.</p>
+          <div class="project-tags"><span class="tag">Next.js</span><span class="tag">E-Commerce</span><span class="tag">Marketing</span></div>
+          <a class="project-link" href="https://ashkonabazar.com" target="_blank">Visit Site</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="section-inner">
-    <span class="section-badge fade-up">What We Do</span>
-    <h2 class="section-title fade-up">Services</h2>
-    <p class="section-sub fade-up">Everything your business needs to grow online.</p>
-  </div>
-  <div class="services-grid">
-    <div class="service-card fade-up">
-      <div class="service-icon">🌐</div>
-      <div class="service-name">Web Development</div>
-      <p class="service-desc">Custom websites and web apps built with Next.js, React, and Tailwind CSS. Fast, responsive, and built to last.</p>
+<section class="section section-dark">
+  <div class="inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">What Clients Say</div>
+      <h2>In their words.</h2>
+      <p class="section-lead">Real feedback from the businesses we work with.</p>
     </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">📱</div>
-      <div class="service-name">Mobile Apps</div>
-      <p class="service-desc">iOS and Android apps built with React Native. One codebase, two platforms — faster delivery, lower cost.</p>
-    </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">⚙️</div>
-      <div class="service-name">Admin Panels</div>
-      <p class="service-desc">Custom dashboards so your team can manage products, orders, and content — without touching any code.</p>
-    </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">🛒</div>
-      <div class="service-name">E-Commerce</div>
-      <p class="service-desc">Online stores with product management, cart, checkout, and order tracking — built for your business.</p>
-    </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">📣</div>
-      <div class="service-name">Digital Marketing</div>
-      <p class="service-desc">Social media management, content creation, and paid ads to grow your online presence and reach more customers.</p>
-    </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">⚡</div>
-      <div class="service-name">Business Process Automation</div>
-      <p class="service-desc">Reporting dashboards, workflow automation, and operational efficiency tools — built as software that connects to your existing systems.</p>
+    <div class="testimonials-grid">
+      <div class="tcard reveal reveal-d1">
+        <div class="tquote-mark">"</div>
+        <p class="tquote">Before this, everything ran through phone calls and messages — orders, updates, confirmations. It was chaotic. Now customers order through the app, the kitchen sees it instantly, and I can actually see what's happening across the business. That visibility alone has changed how I manage things day to day.</p>
+        <div class="tauthor">
+          <div class="tavatar">A</div>
+          <div><div class="tname">Angie's KnB</div><div class="trole">Restaurant Group · Melbourne, Australia</div></div>
+        </div>
+      </div>
+      <div class="tcard reveal reveal-d2">
+        <div class="tquote-mark">"</div>
+        <p class="tquote">We were tracking stock across multiple locations in spreadsheets. By the time something was out, we had already lost the sale. The system MS Biz Studio built keeps everything updated in real time — our team spends a lot less time on admin and a lot more time on the actual business.</p>
+        <div class="tauthor">
+          <div class="tavatar">P</div>
+          <div><div class="tname">Pharmaco Connect</div><div class="trole">Pharmacy Management · Bangladesh</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TEAM -->
-<section class="team" id="team">
-  <div class="section-inner">
-    <span class="section-badge fade-up">The People</span>
-    <h2 class="section-title fade-up">Our Team</h2>
-    <p class="section-sub fade-up">A small team with big experience.</p>
-  </div>
-  <div class="team-grid">
-    <div class="team-card fade-up">
-      <div class="team-avatar">M</div>
-      <div class="team-name">Mofassal H.</div>
-      <div class="team-role">Founder</div>
-      <p class="team-desc">Leads operations, business strategy, and product decisions across every client project.</p>
+<section class="section">
+  <div class="inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">Why MS Biz Studio</div>
+      <h2>Three honest reasons clients choose us.</h2>
+      <p class="section-lead">Not marketing language — actual differences that affect how your project goes.</p>
     </div>
-    <div class="team-card fade-up">
-      <div class="team-avatar">S</div>
-      <div class="team-name">Sabrina Ali Tandra</div>
-      <div class="team-role">Co-Founder</div>
-      <p class="team-desc">MSc Cyber Security, KTH Royal Institute of Technology. Handles security review and data protection across every project.</p>
-    </div>
-    <div class="team-card fade-up">
-      <div class="team-avatar">T</div>
-      <div class="team-name">Tahsin Alom Hadin</div>
-      <div class="team-role">Web Developer</div>
-      <p class="team-desc">CSE student and frontend developer. Builds and maintains client websites and web applications.</p>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-d1">
+        <div class="why-num">01</div>
+        <div class="why-title">We've run operations, not just code</div>
+        <p class="why-desc">Our founder spent 8+ years leading large teams at one of Bangladesh's biggest online platforms with full P&L responsibility. We know how businesses break when systems don't scale — and we build to prevent that.</p>
+      </div>
+      <div class="why-card reveal reveal-d2">
+        <div class="why-num">02</div>
+        <div class="why-title">One team. No handoffs.</div>
+        <p class="why-desc">Website, app, admin panel, marketing — same team, same timeline, same person to call. You don't manage three vendors. Every part connects because the same people built it all.</p>
+      </div>
+      <div class="why-card reveal reveal-d3">
+        <div class="why-num">03</div>
+        <div class="why-title">We build for after launch</div>
+        <p class="why-desc">Most agencies disappear after delivery. We set up reporting, automation, and marketing infrastructure so the product keeps working for your business long after it goes live.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <span class="section-badge fade-up">Get In Touch</span>
-  <h2 class="section-title fade-up">Ready to Build Something?</h2>
-  <p class="fade-up">Tell us about your project — we will get back to you within 24 hours.</p>
-  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-    <a href="https://wa.me/46765606712" target="_blank" class="btn-white fade-up" style="display:inline-flex;align-items:center;gap:8px;">💬 WhatsApp Us</a>
-    <a href="mailto:hello@msbizstudio.com" class="btn-white fade-up" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:white;border:1px solid rgba(255,255,255,0.4);">✉️ Send Email</a>
+<section id="team" class="section section-alt">
+  <div class="inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">The People</div>
+      <h2>Small team. Real experience.</h2>
+      <p class="section-lead">You'll know exactly who is working on your project — and why they're the right person for it.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card featured reveal reveal-d1">
+        <div class="mavatar">M</div>
+        <div class="mname">Mofassal H.</div>
+        <div class="mrole">Founder</div>
+        <p class="mbio">Spent <strong>8+ years at Bikroy.com (Saltside Technologies)</strong> — Bangladesh's largest online marketplace — leading large operations teams with full P&L responsibility. Saw firsthand how the wrong digital systems slow businesses down and how the right ones unlock growth. Built MS Biz Studio from that operational understanding. Now based in Sweden, working with clients across four countries.</p>
+        <div class="mtags"><span class="tag">Operations</span><span class="tag">Strategy</span><span class="tag">P&L</span><span class="tag">Sweden</span></div>
+      </div>
+      <div class="team-card reveal reveal-d2">
+        <div class="mavatar">S</div>
+        <div class="mname">Sabrina Ali Tandra</div>
+        <div class="mrole">Co-Founder</div>
+        <p class="mbio"><strong>MSc in Cyber Security from KTH Royal Institute of Technology</strong>, Stockholm — one of Europe's top engineering universities. Handles security architecture and data protection across every project. Security is built in from day one, not added later.</p>
+        <div class="mtags"><span class="tag">Cybersecurity</span><span class="tag">KTH</span><span class="tag">GDPR</span></div>
+      </div>
+      <div class="team-card reveal reveal-d3">
+        <div class="mavatar">T</div>
+        <div class="mname">Tahsin Alom Hadin</div>
+        <div class="mrole">Web Developer</div>
+        <p class="mbio">Frontend developer and CSE student. Builds and maintains the client-facing code on every project — clean, fast, and maintainable. The person who makes the designs real.</p>
+        <div class="mtags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Tailwind</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<section id="contact" class="section section-dark">
+  <div class="cta-inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">Get In Touch</div>
+      <h2>Tell us what's slowing your business down.</h2>
+    </div>
+    <p class="reveal reveal-d1">We'll tell you honestly whether we can help — and how. No sales call, no pitch deck. Just a straight conversation about your situation. Most clients hear back within a few hours.</p>
+    <div class="cta-btns reveal reveal-d2">
+      <a href="https://wa.me/46765606712" class="btn-white">💬 WhatsApp Us</a>
+      <a href="mailto:hello@msbizstudio.com" class="btn-outline">✉️ Send Email</a>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <a href="#" class="logo" style="display:flex;align-items:center;gap:10px;">
-    <img src="images/icon.png" alt="MS Biz Studio" style="height:36px;width:auto;display:block;background:transparent;border:none;object-fit:contain;">
-    <span style="font-weight:800;font-size:18px;color:#1e3a6e;">MS Biz Studio</span>
-  </a>
-  <p>© 2024 MS Biz Studio. Sweden & Worldwide.</p>
+  <div class="footer-logo">
+    <img src="images/icon.png" alt="MS Biz Studio"/>
+    <span>MS Biz Studio</span>
+  </div>
+  <p>© 2026 MS Biz Studio. Sweden and Worldwide.</p>
 </footer>
 
 <script>
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+  function animateCounter(el, target) {
+    let current = 0;
+    const step = target / 40;
+    const timer = setInterval(() => {
+      current += step;
+      if(current >= target){ current = target; clearInterval(timer); }
+      el.textContent = Math.floor(current) + '+';
+    }, 35);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.num[data-target]').forEach(num => {
+          animateCounter(num, parseInt(num.getAttribute('data-target')));
+        });
+        statsObserver.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.5});
+
+  const stats = document.querySelector('.hero-stats');
+  if(stats) statsObserver.observe(stats);
+</script>
 </body>
 </html>
-
