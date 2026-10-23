@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MS Biz Studio - End-to-End Digital Solutions</title>
+  <title>MS Biz Studio - Restaurant Ordering Systems, Apps & Automation</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -175,6 +175,24 @@
     .service-price strong{font-size:20px;font-weight:900;color:var(--text);letter-spacing:-0.5px;margin:0 2px 0 4px;}
     .price-suf{font-size:12px;color:var(--muted);font-weight:600;}
     .price-note{text-align:center;font-size:13px;color:var(--muted);margin-top:24px;}
+    .nav-resto{color:var(--blue)!important;font-weight:700!important;}
+    a.available{text-decoration:none;color:#15803D;}
+    a.available:hover{border-color:#86EFAC;}
+    .resto-band{padding:88px 48px;background:linear-gradient(180deg,#F5F9FF,#fff);border-top:1px solid var(--border);}
+    @media(max-width:700px){.resto-band{padding:64px 20px;}}
+    .rb-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative;}
+    .rb-flow::before{content:'';position:absolute;top:44px;left:12%;right:12%;border-top:2px dashed #93C5FD;}
+    @media(max-width:860px){.rb-flow{grid-template-columns:1fr 1fr;}.rb-flow::before{display:none;}}
+    .rb-step{background:#fff;border:1px solid var(--border);border-radius:16px;padding:22px 18px;text-align:center;position:relative;}
+    .rb-ic{width:48px;height:48px;border-radius:14px;margin:0 auto 14px;background:linear-gradient(135deg,var(--blue),var(--blue2));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(26,95,168,0.25);}
+    .rb-ic svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+    .rb-t{font-size:15px;font-weight:800;margin-bottom:6px;}
+    .rb-d{font-size:13px;color:var(--sub);line-height:1.55;}
+    .rb-cta{margin-top:28px;background:#fff;border:1px solid var(--border);border-radius:18px;padding:20px 24px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:space-between;}
+    .rb-stat{display:flex;align-items:baseline;gap:8px;}
+    .rb-stat strong{font-size:26px;font-weight:900;color:var(--blue);letter-spacing:-0.5px;}
+    .rb-stat span{font-size:13px;color:var(--sub);font-weight:600;}
+    @media(max-width:700px){.rb-cta{flex-direction:column;align-items:stretch;text-align:center;gap:14px;}.rb-stat{justify-content:center;}}
   </style>
 </head>
 <body>
@@ -184,6 +202,7 @@
     <span>MS Biz Studio</span>
   </a>
   <ul class="nav-links">
+    <li><a class="nav-resto" href="restaurants.html" data-bd-href="bn/restaurant.html">For Restaurants</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#services">Services</a></li>
@@ -193,12 +212,12 @@
 </nav>
 
 <section class="hero">
-  <div class="available h-a1"><div class="dot"></div> Available for new projects</div>
-  <h1 class="hero-h1 h-a2">Most agencies build you a website.<br/><em>We build the system behind your business.</em></h1>
-  <p class="hero-sub h-a3">Websites, apps, ordering systems and automation — built by a team that has spent 15 years actually running businesses.</p>
+  <a class="available h-a1" href="restaurants.html" data-bd-href="bn/restaurant.html"><div class="dot"></div> Restaurant platform · live in Melbourne, now in Bangladesh →</a>
+  <h1 class="hero-h1 h-a2">Your restaurant's own ordering system.<br/><em>Zero commission.</em></h1>
+  <p class="hero-sub h-a3">Online ordering, your own app, POS integration and automatic kitchen printing — plus the marketing that brings customers in. And for every other business: websites, apps and automation.</p>
   <div class="hero-btns h-a4">
-    <a href="#work" class="btn-blue">See Our Work</a>
-    <a href="#contact" class="btn-ghost">Start a Project</a>
+    <a href="restaurants.html" data-bd-href="bn/restaurant.html" class="btn-blue">See the Restaurant System</a>
+    <a href="#work" class="btn-ghost">See Our Work</a>
   </div>
   <div class="showcase h-a5">
     <div class="browser">
@@ -250,6 +269,28 @@
   </div>
 </section>
 
+<section class="resto-band">
+  <div class="inner">
+    <div class="section-head reveal">
+      <div class="eyebrow">For Restaurants</div>
+      <h2>From tap to kitchen in seconds.</h2>
+      <p class="section-lead">One system from the customer's phone to your kitchen printer. Flat monthly fee — no commission on your orders.</p>
+    </div>
+    <div class="rb-flow">
+      <div class="rb-step reveal reveal-d1"><div class="rb-ic"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div><div class="rb-t">Customer orders</div><div class="rb-d">Your website or your own app</div></div>
+      <div class="rb-step reveal reveal-d2"><div class="rb-ic"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20M6 15h4"/></svg></div><div class="rb-t">Pays online</div><div class="rb-d">Stripe, Apple Pay · bKash, Nagad in BD</div></div>
+      <div class="rb-step reveal reveal-d3"><div class="rb-ic"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></div><div class="rb-t">Kitchen auto-prints</div><div class="rb-d">Printer + kitchen screen, synced with POS</div></div>
+      <div class="rb-step reveal reveal-d4"><div class="rb-ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17l4-8h5l3 8M10 9l2 8M14 5h3"/></svg></div><div class="rb-t">Pickup or delivery</div><div class="rb-d">Your zones, your riders</div></div>
+    </div>
+    <div class="rb-cta reveal">
+      <div class="rb-stat"><strong>$0</strong><span>commission per order</span></div>
+      <div class="rb-stat"><strong>iOS</strong><span>app live on the App Store</span></div>
+      <div class="rb-stat"><strong class="price" data-bd="৳1,999" data-intl="$69">$69</strong><span>per month, starting</span></div>
+      <a class="btn-blue" href="restaurants.html" data-bd-href="bn/restaurant.html">See features &amp; pricing →</a>
+    </div>
+  </div>
+</section>
+
 <section id="about" class="section section-alt">
   <div class="inner">
     <div class="section-head reveal">
@@ -286,7 +327,7 @@
   <div class="inner">
     <div class="section-head reveal">
       <div class="eyebrow">What We Do</div>
-      <h2>Six ways we grow your business.</h2>
+      <h2>Beyond restaurants: six more ways we grow your business.</h2>
       <p class="section-lead">Start with your problem — we pick the right solution.</p>
     </div>
     <div class="services-grid">
@@ -529,6 +570,7 @@
     if(bd){
       document.querySelectorAll('.price').forEach(function(el){el.textContent=el.getAttribute('data-bd');});
       document.querySelectorAll('.price-suf').forEach(function(el){el.textContent='/মাস + ad খরচ';});
+      document.querySelectorAll('[data-bd-href]').forEach(function(el){el.setAttribute('href',el.getAttribute('data-bd-href'));});
     }
   }catch(e){}
 })();

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>রেস্টুরেন্ট অর্ডারিং সিস্টেম — কমিশন ছাড়া | MS Biz Studio</title>
+<meta name="description" content="নিজের অনলাইন অর্ডারিং, নিজের অ্যাপ, bKash/Nagad/SSLCommerz, কিচেনে অটো প্রিন্ট। কোনো কমিশন নেই।"/>
+<meta property="og:title" content="রেস্টুরেন্ট অর্ডারিং সিস্টেম — কমিশন ছাড়া | MS Biz Studio"/>
+<meta property="og:description" content="নিজের অনলাইন অর্ডারিং, নিজের অ্যাপ, bKash/Nagad/SSLCommerz, কিচেনে অটো প্রিন্ট। কোনো কমিশন নেই।"/>
+<meta property="og:image" content="https://msbizstudio.com/images/angies-knb.jpg"/>
+<link rel="icon" href="../images/icon.png"/>
+<link rel="alternate" hreflang="en" href="https://msbizstudio.com/restaurants.html"/>
+<link rel="alternate" hreflang="bn" href="https://msbizstudio.com/bn/restaurant.html"/>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--navy:#0F172A;--blue:#1A5FA8;--blue2:#2E8DE0;--text:#0F172A;--sub:#475569;--muted:#94A3B8;--border:#E2E8F0;--bg:#F8FAFC;--sky:#EFF6FF;--green:#16A34A;--amber:#B45309;}
+html{scroll-behavior:smooth;}
+body{font-family:'Hind Siliguri','Inter',sans-serif;background:#fff;color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+.bdbar{display:none;background:var(--sky);border-bottom:1px solid #BFDBFE;text-align:center;padding:9px 16px;font-family:'Hind Siliguri',sans-serif;font-size:14px;font-weight:600;}
+.bdbar a{color:var(--blue);text-decoration:none;}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 40px;height:64px;display:flex;align-items:center;gap:28px;}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;}
+.nav-logo img{height:32px;}
+.nav-logo span{font-family:Inter,sans-serif;font-size:15px;font-weight:800;letter-spacing:-.3px;}
+.nav-links{display:flex;gap:26px;list-style:none;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--sub);text-decoration:none;}
+.nav-links a:hover{color:var(--blue);}
+.switch{font-size:13px;font-weight:700;color:var(--blue);text-decoration:none;border:1.5px solid #BFDBFE;background:var(--sky);padding:7px 12px;border-radius:999px;white-space:nowrap;}
+.nav-cta{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:14px;font-weight:700;padding:10px 20px;border-radius:10px;text-decoration:none;white-space:nowrap;}
+@media(max-width:900px){.nav-links{display:none;}nav{padding:0 16px;gap:10px;}.nav-logo span{display:none;}.nav-cta{padding:9px 14px;font-size:13px;}}
+.btn-blue{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:15px;font-weight:700;padding:14px 28px;border-radius:12px;text-decoration:none;transition:transform .15s,box-shadow .15s;}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(26,95,168,.3);}
+.btn-ghost{display:inline-block;background:#fff;color:var(--text);border:1.5px solid var(--border);font-size:15px;font-weight:700;padding:14px 28px;border-radius:12px;text-decoration:none;transition:border-color .15s,transform .15s;}
+.btn-ghost:hover{border-color:var(--blue);transform:translateY(-2px);}
+.hero{padding:72px 24px 64px;position:relative;overflow:hidden;background:linear-gradient(180deg,#F5F9FF 0%,#fff 100%);}
+.hero::before{content:'';position:absolute;top:-200px;right:-160px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(46,141,224,.12),transparent 70%);}
+.hero-grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;position:relative;}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:40px;text-align:center;}}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#F0FDF4;border:1px solid #BBF7D0;color:#15803D;font-size:13px;font-weight:700;padding:7px 14px;border-radius:30px;margin-bottom:22px;}
+.badge i{width:7px;height:7px;border-radius:50%;background:#22C55E;animation:blink 2s infinite;}
+@keyframes blink{50%{opacity:.3}}
+h1{font-size:58px;font-weight:900;letter-spacing:-2.2px;line-height:1.05;margin-bottom:20px;}
+:lang(bn) h1{letter-spacing:0;line-height:1.25;font-weight:700;}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--blue),var(--blue2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+@media(max-width:700px){h1{font-size:38px;letter-spacing:-1.2px;}}
+.sub{font-size:18px;color:var(--sub);line-height:1.7;max-width:540px;margin-bottom:30px;}
+@media(max-width:960px){.sub{margin-left:auto;margin-right:auto;}}
+.btns{display:flex;gap:12px;flex-wrap:wrap;}
+@media(max-width:960px){.btns{justify-content:center;}}
+.notes{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;font-size:14px;font-weight:600;color:var(--sub);}
+@media(max-width:960px){.notes{justify-content:center;}}
+.notes span{display:inline-flex;align-items:center;gap:6px;}
+.notes svg,.ck svg{width:16px;height:16px;stroke:var(--green);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+/* flow visual */
+.flow{position:relative;height:470px;}
+@media(max-width:960px){.flow{max-width:460px;margin:0 auto;width:100%;}}
+@media(max-width:520px){.flow{height:430px;}}
+.phone{position:absolute;left:0;top:0;width:230px;background:#fff;border:1px solid var(--border);border-radius:30px;padding:16px;box-shadow:0 30px 70px -20px rgba(15,23,42,.3);text-align:left;}
+.phone .ph-top{height:6px;width:60px;background:var(--border);border-radius:9px;margin:0 auto 14px;}
+.ph-h{font-size:12px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-family:Inter,sans-serif;}
+.ph-row{display:flex;justify-content:space-between;font-size:14px;font-weight:600;padding:9px 0;border-bottom:1px dashed var(--border);}
+.ph-paid{margin-top:12px;display:flex;align-items:center;justify-content:space-between;background:#F0FDF4;color:#15803D;border-radius:12px;padding:10px 12px;font-size:13px;font-weight:700;}
+.ph-paid b{font-family:Inter,sans-serif;font-size:16px;color:var(--text);}
+.printer{position:absolute;right:0;top:40px;width:220px;text-align:center;}
+.pr-body{background:linear-gradient(180deg,#334155,#1E293B);height:70px;border-radius:18px 18px 10px 10px;position:relative;box-shadow:0 20px 40px -12px rgba(15,23,42,.4);}
+.pr-body::after{content:'';position:absolute;left:24px;right:24px;bottom:14px;height:6px;border-radius:4px;background:#0B1220;}
+.pr-led{position:absolute;right:18px;top:16px;width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 8px #22C55E;}
+.ticket{margin:-8px auto 0;width:170px;background:#fff;border:1px solid var(--border);border-top:none;padding:14px 14px 18px;font-family:'Courier New',monospace;font-size:12.5px;text-align:left;color:#1E293B;box-shadow:0 14px 30px rgba(15,23,42,.12);transform-origin:top;animation:print 4.5s ease-in-out infinite;clip-path:polygon(0 0,100% 0,100% 94%,90% 100%,80% 94%,70% 100%,60% 94%,50% 100%,40% 94%,30% 100%,20% 94%,10% 100%,0 94%);}
+.ticket b{display:block;text-align:center;letter-spacing:3px;margin-bottom:6px;}
+.ticket .tl{border-top:1px dashed #94A3B8;margin:7px 0;}
+:lang(bn) .ticket{font-family:'Hind Siliguri',monospace;}
+@keyframes print{0%{transform:scaleY(.05)}25%,85%{transform:scaleY(1)}100%{transform:scaleY(1)}}
+.dash{position:absolute;left:50%;bottom:0;transform:translateX(-45%);width:300px;background:#fff;border:1px solid var(--border);border-radius:18px;padding:16px 18px;box-shadow:0 26px 60px -18px rgba(15,23,42,.28);text-align:left;}
+.dash-h{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-family:Inter,sans-serif;}
+.dash-g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.dash-g div{background:var(--bg);border-radius:12px;padding:10px;}
+.dash-g small{display:block;font-size:11.5px;color:var(--muted);font-weight:600;line-height:1.3;}
+.dash-g strong{font-family:Inter,sans-serif;font-size:18px;font-weight:900;letter-spacing:-.5px;}
+.dash-g .zero{background:#F0FDF4;}.dash-g .zero strong{color:var(--green);}
+.arrow{position:absolute;stroke:var(--blue2);fill:none;stroke-width:2.5;stroke-dasharray:6 7;animation:dash 1.2s linear infinite;}
+@keyframes dash{to{stroke-dashoffset:-26}}
+@media(max-width:520px){.phone{width:190px;padding:13px}.ph-row{font-size:12.5px}.printer{width:170px;top:20px}.ticket{width:140px;font-size:11px}.dash{width:270px;transform:translateX(-50%)}}
+/* sections */
+.section{padding:96px 40px;}
+.alt{background:var(--bg);}
+.inner{max-width:1100px;margin:0 auto;}
+@media(max-width:700px){.section{padding:64px 18px;}}
+.head{text-align:center;margin-bottom:48px;}
+.eye{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+:lang(bn) .eye{letter-spacing:0;font-size:15px;text-transform:none;}
+h2{font-size:40px;font-weight:900;letter-spacing:-1px;line-height:1.12;margin-bottom:14px;}
+:lang(bn) h2{letter-spacing:0;font-weight:700;line-height:1.3;}
+@media(max-width:700px){h2{font-size:30px;}}
+.lead{font-size:17px;color:var(--sub);line-height:1.7;max-width:620px;margin:0 auto;}
+/* calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch;}
+@media(max-width:860px){.calc{grid-template-columns:1fr;}}
+.calc-in,.calc-out{background:#fff;border:1px solid var(--border);border-radius:20px;padding:30px;}
+.field{margin-bottom:28px;}
+.field label{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;font-weight:700;margin-bottom:14px;gap:12px;}
+.field output{font-family:Inter,sans-serif;font-size:24px;font-weight:900;color:var(--blue);letter-spacing:-.5px;white-space:nowrap;}
+input[type=range]{width:100%;accent-color:var(--blue);height:6px;cursor:pointer;}
+.calc-foot{font-size:13px;color:var(--muted);line-height:1.6;}
+.calc-out{background:linear-gradient(160deg,#F5F9FF,#fff);display:grid;gap:14px;}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:15px;font-weight:600;color:var(--sub);padding-bottom:14px;border-bottom:1px dashed var(--border);}
+.row strong{font-family:Inter,sans-serif;font-size:22px;font-weight:900;color:var(--text);white-space:nowrap;}
+.row.loss strong{color:#DC2626;}
+.save{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:16px;padding:18px 20px;}
+.save small{display:block;font-size:14px;font-weight:700;color:#15803D;margin-bottom:4px;}
+.save strong{font-family:Inter,sans-serif;font-size:40px;font-weight:900;color:var(--green);letter-spacing:-1px;}
+/* how */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.steps{grid-template-columns:1fr;}}
+.step{background:#fff;border:1px solid var(--border);border-radius:18px;padding:26px 22px;position:relative;}
+.step-n{position:absolute;top:18px;right:20px;font-family:Inter,sans-serif;font-size:13px;font-weight:900;color:#CBD5E1;}
+.ic{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,rgba(26,95,168,.1),rgba(46,141,224,.18));display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.ic svg{width:24px;height:24px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.step h3,.feat h3{font-size:17px;font-weight:800;margin-bottom:8px;}
+:lang(bn) .step h3,:lang(bn) .feat h3{font-weight:700;font-size:19px;}
+.step p,.feat p{font-size:14.5px;color:var(--sub);line-height:1.65;}
+.soon{display:inline-block;font-size:11px;font-weight:800;color:var(--amber);background:#FEF3C7;border:1px solid #FDE68A;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle;white-space:nowrap;font-family:inherit;letter-spacing:0;text-transform:none;}
+:lang(bn) .soon{font-size:12px;}
+/* app */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:36px;}}
+.split h2{text-align:left;}
+.split .lead{margin:0 0 22px;text-align:left;}
+.ck{list-style:none;display:grid;gap:12px;margin-bottom:24px;}
+.ck li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;font-weight:600;}
+.ck li svg{margin-top:3px;}
+.tlink{font-size:15px;font-weight:700;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.tlink svg{width:16px;height:16px;fill:var(--blue);}
+.tlink:hover{text-decoration:underline;}
+.phones{position:relative;height:440px;}
+.mp{position:absolute;width:210px;height:420px;border-radius:34px;background:#fff;border:8px solid #0F172A;box-shadow:0 30px 70px -20px rgba(15,23,42,.35);overflow:hidden;}
+.mp1{left:50%;transform:translateX(-90%) rotate(-6deg);top:10px;}
+.mp2{left:50%;transform:translateX(-5%) rotate(5deg);top:20px;}
+.mp-hd{height:110px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:26px 16px 0;}
+.mp-hd b{display:block;font-size:17px;font-family:Inter,sans-serif;}
+.mp-hd small{font-size:12.5px;opacity:.85;}
+.mp-it{display:flex;gap:10px;align-items:center;margin:12px 14px 0;background:var(--bg);border-radius:12px;padding:8px;}
+.mp-it i{width:42px;height:42px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,#FDE68A,#FDBA74);}
+.mp-it:nth-child(3) i{background:linear-gradient(135deg,#BBF7D0,#86EFAC);}
+.mp-it:nth-child(4) i{background:linear-gradient(135deg,#FBCFE8,#F9A8D4);}
+.mp-it div{flex:1;}
+.mp-it em{display:block;height:8px;border-radius:5px;background:#CBD5E1;width:80%;margin-bottom:6px;}
+.mp-it em+em{width:45%;background:#E2E8F0;}
+.push{position:absolute;left:12px;right:12px;top:14px;background:rgba(255,255,255,.97);border-radius:14px;padding:10px 12px;box-shadow:0 10px 24px rgba(15,23,42,.2);font-size:12.5px;font-weight:600;text-align:left;animation:drop 5s ease-in-out infinite;}
+.push b{display:block;font-size:11px;color:var(--muted);font-family:Inter,sans-serif;}
+@keyframes drop{0%,10%{transform:translateY(-120%);opacity:0}20%,80%{transform:none;opacity:1}90%,100%{transform:translateY(-120%);opacity:0}}
+.stamp{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 14px 0;}
+.stamp i{aspect-ratio:1;border-radius:50%;border:2px dashed #93C5FD;}
+.stamp i.on{background:var(--blue2);border:none;}
+.mp-lbl{margin:16px 14px 0;font-size:13px;font-weight:800;}
+@media(max-width:520px){.phones{height:380px}.mp{width:170px;height:350px}}
+/* features */
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.fgrid{grid-template-columns:1fr;}}
+.feat{background:#fff;border:1px solid var(--border);border-radius:18px;padding:24px;transition:transform .2s,box-shadow .2s;}
+.feat:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(15,23,42,.07);}
+/* marketing */
+.mk{background:linear-gradient(135deg,#EFF6FF,#F0F9FF 60%,#ECFEFF);border:1px solid #DBEAFE;border-radius:28px;padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;}
+@media(max-width:860px){.mk{grid-template-columns:1fr;padding:32px 22px;}}
+.mk h2{text-align:left;}
+.mk .lead{text-align:left;margin:0;}
+.mk-stats{display:grid;gap:12px;}
+.mk-stat{background:#fff;border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:16px;box-shadow:0 8px 24px rgba(26,95,168,.08);}
+.mk-stat strong{font-family:Inter,sans-serif;font-size:32px;font-weight:900;color:var(--blue);min-width:92px;letter-spacing:-1px;}
+:lang(bn) .mk-stat strong{font-family:'Hind Siliguri',sans-serif;}
+.mk-stat span{font-size:15px;font-weight:600;color:var(--sub);}
+/* case */
+.case{display:grid;grid-template-columns:1.1fr 1fr;gap:0;background:#fff;border:1px solid var(--border);border-radius:24px;overflow:hidden;}
+@media(max-width:860px){.case{grid-template-columns:1fr;}}
+.case img{width:100%;height:100%;min-height:300px;object-fit:cover;object-position:top left;display:block;}
+.case-b{padding:40px;}
+@media(max-width:700px){.case-b{padding:26px 22px;}}
+.case-b h2{font-size:30px;text-align:left;}
+.case-b p{font-size:15.5px;color:var(--sub);line-height:1.7;margin-bottom:16px;}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;}
+.tag{font-size:12.5px;font-weight:600;background:var(--bg);border:1px solid var(--border);color:var(--sub);padding:4px 11px;border-radius:20px;}
+blockquote{border-left:3px solid var(--blue2);padding:4px 0 4px 16px;margin-bottom:12px;font-family:Inter,sans-serif;font-size:15px;font-style:italic;color:var(--text);line-height:1.7;}
+.qby{font-size:13.5px;font-weight:700;margin-bottom:20px;}
+.qby span{color:var(--muted);font-weight:600;}
+/* integrations */
+.ints{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.int{background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px 20px;font-size:15.5px;font-weight:800;display:flex;align-items:center;gap:8px;}
+.int i{width:10px;height:10px;border-radius:50%;background:var(--blue2);}
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;}
+@media(max-width:900px){.plans{grid-template-columns:1fr;max-width:460px;margin:0 auto;}}
+.plan{background:#fff;border:1px solid var(--border);border-radius:22px;padding:30px 26px;position:relative;}
+.plan.pop{border:2px solid var(--blue2);box-shadow:0 24px 60px -20px rgba(26,95,168,.35);}
+.pop-l{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:12px;font-weight:800;padding:5px 14px;border-radius:20px;white-space:nowrap;}
+.plan h3{font-size:20px;font-weight:800;margin-bottom:4px;}
+.pnote{font-size:14px;color:var(--muted);font-weight:600;margin-bottom:18px;min-height:20px;}
+.price{font-family:Inter,sans-serif;font-size:44px;font-weight:900;letter-spacing:-1.5px;line-height:1;}
+.price small{font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0;font-family:'Hind Siliguri','Inter',sans-serif;}
+.pmon{font-family:Inter,sans-serif;font-size:18px;font-weight:800;color:var(--blue);margin-top:8px;}
+.plan .btn-blue,.plan .btn-ghost{display:block;text-align:center;margin:22px 0;}
+.plan .ck li{font-size:14.5px;font-weight:500;}
+.p-extra{text-align:center;font-size:14px;color:var(--sub);margin-top:28px;line-height:1.7;}
+/* faq */
+.faq{max-width:780px;margin:0 auto;display:grid;gap:12px;}
+details{background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px 22px;}
+summary{cursor:pointer;font-size:16.5px;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px;}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:'+';font-family:Inter,sans-serif;font-size:22px;color:var(--blue);line-height:1;}
+details[open] summary::after{content:'–';}
+details p{margin-top:12px;font-size:15px;color:var(--sub);line-height:1.7;}
+/* end */
+.end{background:linear-gradient(135deg,var(--blue),var(--blue2));border-radius:28px;padding:60px 32px;text-align:center;color:#fff;}
+.end h2{color:#fff;}
+.end p{font-size:17px;opacity:.9;max-width:560px;margin:0 auto 28px;line-height:1.7;}
+.end .btns{justify-content:center;}
+.btn-w{display:inline-block;background:#fff;color:var(--blue);font-size:15px;font-weight:800;padding:14px 28px;border-radius:12px;text-decoration:none;}
+.btn-o{display:inline-block;border:1.5px solid rgba(255,255,255,.5);color:#fff;font-size:15px;font-weight:700;padding:14px 28px;border-radius:12px;text-decoration:none;}
+footer{padding:28px 40px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--border);font-size:13px;color:var(--muted);}
+footer a{text-decoration:none;font-weight:700;color:var(--sub);}
+@media(max-width:600px){footer{flex-direction:column;text-align:center;padding:24px 18px 90px;}}
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(37,211,102,.45);}
+.wa-float svg{width:28px;height:28px;fill:#fff;}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html"><img src="../images/icon.png" alt="MS Biz Studio"/><span>MS Biz Studio</span></a>
+  <ul class="nav-links"><li><a href="#how">কীভাবে কাজ করে</a></li><li><a href="#features">ফিচার</a></li><li><a href="#pricing">দাম</a></li><li><a href="#faq">প্রশ্ন</a></li></ul>
+  <a class="switch" href="../restaurants.html">🌍 English · USD</a>
+  <a class="nav-cta" href="https://wa.me/46765606712?text=%E0%A6%86%E0%A6%B8%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%AE%E0%A7%81%20%E0%A6%86%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%95%E0%A7%81%E0%A6%AE%20MS%20Biz%20Studio%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%B0%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%81%E0%A6%B0%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%20%E0%A6%85%E0%A6%B0%E0%A7%8D%E0%A6%A1%E0%A6%BE%E0%A6%B0%E0%A6%BF%E0%A6%82%20%E0%A6%B8%E0%A6%BF%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%87%E0%A6%AE%E0%A7%87%E0%A6%B0%20%E0%A6%A1%E0%A7%87%E0%A6%AE%E0%A7%8B%20%E0%A6%A6%E0%A7%87%E0%A6%96%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener">ফ্রি ডেমো</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="badge"><i></i>অস্ট্রেলিয়ার মেলবোর্নে চলছে · এখন বাংলাদেশে</div>
+      <h1>কমিশন ছাড়া<br/><em>নিজের অর্ডারিং সিস্টেম</em></h1>
+      <p class="sub">ওয়েবসাইটে অর্ডার, নিজের অ্যাপ, bKash/Nagad পেমেন্ট আর কিচেনে অটো প্রিন্ট — সাথে কাস্টমার আনার মার্কেটিংও আমরাই করি।</p>
+      <div class="btns"><a class="btn-blue" href="#pricing">দাম দেখুন</a><a class="btn-ghost" href="https://wa.me/46765606712?text=%E0%A6%86%E0%A6%B8%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%AE%E0%A7%81%20%E0%A6%86%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%95%E0%A7%81%E0%A6%AE%20MS%20Biz%20Studio%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%B0%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%81%E0%A6%B0%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%20%E0%A6%85%E0%A6%B0%E0%A7%8D%E0%A6%A1%E0%A6%BE%E0%A6%B0%E0%A6%BF%E0%A6%82%20%E0%A6%B8%E0%A6%BF%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%87%E0%A6%AE%E0%A7%87%E0%A6%B0%20%E0%A6%A1%E0%A7%87%E0%A6%AE%E0%A7%8B%20%E0%A6%A6%E0%A7%87%E0%A6%96%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener">ফ্রি ডেমো নিন</a></div>
+      <div class="notes"><span><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg>কোনো কমিশন নেই</span><span><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg>লক-ইন নেই</span><span><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg>বছরে দিলে ২ মাস ফ্রি</span></div>
+    </div>
+    <div class="flow" aria-hidden="true">
+      <div class="phone">
+        <div class="ph-top"></div>
+        <div class="ph-h">নতুন অর্ডার</div>
+        <div class="ph-row"><span>২× চিকেন বার্গার</span></div>
+        <div class="ph-row"><span>১× ফ্রেঞ্চ ফ্রাই</span></div>
+        <div class="ph-paid"><span>✓ পেইড · bKash</span><b>৳1,240</b></div>
+      </div>
+      <svg class="arrow" style="left:200px;top:80px;width:110px;height:60px" viewBox="0 0 110 60"><path d="M4 50 C40 50 60 10 104 10"/></svg>
+      <div class="printer">
+        <div class="pr-body"><span class="pr-led"></span></div>
+        <div class="ticket"><b>KITCHEN</b>অর্ডার #1042 · ডেলিভারি<div class="tl"></div>২× চিকেন বার্গার<br/>১× ফ্রেঞ্চ ফ্রাই<div class="tl"></div>✓ পেইড · bKash</div>
+      </div>
+      <div class="dash">
+        <div class="dash-h">আজ</div>
+        <div class="dash-g"><div><small>অর্ডার</small><strong>86</strong></div><div><small>বিক্রি</small><strong>৳48,600</strong></div><div class="zero"><small>কমিশন দিলেন</small><strong>৳0</strong></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="calc">
+  <div class="inner">
+    <div class="head reveal"><div class="eye">কমিশন ক্যালকুলেটর</div><h2>ফুড অ্যাপকে মাসে কত টাকা দিচ্ছেন?</h2><p class="lead">স্লাইডার সরিয়ে আপনার আসল হিসাব বসান।</p></div>
+    <div class="calc">
+      <div class="calc-in reveal d1">
+        <div class="field"><label for="cs"><span>ফুড অ্যাপ থেকে মাসিক বিক্রি</span><output id="csv"></output></label><input type="range" id="cs" min="50000" max="2000000" step="10000" value="300000"/></div>
+        <div class="field"><label for="cr"><span>তারা কত % কমিশন নেয়</span><output id="crv"></output></label><input type="range" id="cr" min="10" max="35" step="1" value="25"/></div>
+        <p class="calc-foot">নিজের সিস্টেমে শুধু পেমেন্ট গেটওয়ের সাধারণ চার্জ থাকে (bKash/SSLCommerz), আমাদের কোনো কমিশন নেই। শুরুর সেটআপ ফি একবারই।</p>
+      </div>
+      <div class="calc-out reveal d2">
+        <div class="row loss"><span>প্রতি মাসে তাদের দিচ্ছেন</span><strong id="o1"></strong></div>
+        <div class="row loss"><span>বছরে</span><strong id="o2"></strong></div>
+        <div class="row"><span>আমাদের স্ট্যান্ডার্ড প্ল্যান</span><strong id="o3"></strong></div>
+        <div class="save"><small>বছরে আপনার বাঁচবে</small><strong id="o4"></strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="how">
+  <div class="inner">
+    <div class="head reveal"><div class="eye">কীভাবে কাজ করে</div><h2>অর্ডার থেকে কিচেন — কয়েক সেকেন্ডে</h2></div>
+    <div class="steps"><div class="step reveal d1"><span class="step-n">01</span><div class="ic"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div><h3>কাস্টমার অর্ডার করে</h3><p>আপনার ওয়েবসাইট বা নিজের অ্যাপ থেকে — ডেলিভারি, পিকআপ বা টেবিল।</p></div><div class="step reveal d2"><span class="step-n">02</span><div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20M6 15h4"/></svg></div><h3>অনলাইনে পেমেন্ট</h3><p>bKash, Nagad, কার্ড (SSLCommerz) অথবা ক্যাশ অন ডেলিভারি।</p></div><div class="step reveal d3"><span class="step-n">03</span><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></div><h3>কিচেনে অটো প্রিন্ট</h3><p>অর্ডার নিজে থেকেই প্রিন্ট হয় আর কিচেন স্ক্রিনে দেখায় — বারবার ফোন দেখতে হয় না।</p></div><div class="step reveal d4"><span class="step-n">04</span><div class="ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17l4-8h5l3 8M10 9l2 8M14 5h3"/></svg></div><h3>ডেলিভারি</h3><p>নিজের রাইডার দিয়ে ডেলিভারি, এলাকা অনুযায়ী চার্জ — রাইডার ট্র্যাকিংসহ।</p></div></div>
+  </div>
+</section>
+
+<section class="section" id="app">
+  <div class="inner split">
+    <div class="phones reveal" aria-hidden="true">
+      <div class="mp mp1"><div class="mp-hd"><b>Your Restaurant</b><small>★ 4.9 · 20–30 min</small></div><div class="mp-it"><i></i><div><em></em><em></em></div></div><div class="mp-it"><i></i><div><em></em><em></em></div></div><div class="mp-it"><i></i><div><em></em><em></em></div></div><div class="push"><b>Your Restaurant · now</b>🍔 2-for-1 burgers tonight only</div></div>
+      <div class="mp mp2"><div class="mp-hd"><b>Rewards</b><small>7 / 10 stamps</small></div><div class="mp-lbl">☕ 10th one free</div><div class="stamp"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div><div class="mp-it" style="margin-top:18px"><i></i><div><em></em><em></em></div></div></div>
+    </div>
+    <div class="reveal d1">
+      <div class="eye">নিজের অ্যাপ</div>
+      <h2>কাস্টমারের ফোনে আপনার নিজের অ্যাপ</h2>
+      <p class="lead">Foodpanda-তে আপনার পাশেই ১০০টা প্রতিযোগী। নিজের অ্যাপে শুধু আপনি। অফার পাঠান, নিয়মিত কাস্টমারকে পুরস্কার দিন, কাস্টমারের তথ্য থাকবে আপনার কাছে।</p>
+      <ul class="ck"><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>Android অ্যাপ (Play Store) <span class="soon">শিগগিরই</span></span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>iPhone অ্যাপ — অস্ট্রেলিয়ায় App Store-এ চলছে</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>পুশ নোটিফিকেশনে অফার <span class="soon">শিগগিরই</span></span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>দুই ট্যাপে আবার অর্ডার</span></li></ul>
+      <a class="tlink" href="https://apps.apple.com/au/app/angies-kebabs-burgers/id6786436972" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16.37 1.43c0 1.14-.49 2.27-1.18 3.08-.74.9-1.99 1.57-2.99 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.57-2.27 1.21-2.98.8-.94 2.14-1.64 3.25-1.68.03.13.05.28.05.43zm4.56 15.71c-.03.07-.46 1.58-1.52 3.12-.94 1.34-1.94 2.71-3.43 2.71-1.52 0-1.9-.88-3.63-.88-1.7 0-2.3.91-3.67.91-1.38 0-2.33-1.26-3.43-2.8C4 18.38 2.97 15.57 2.97 12.92c0-4.28 2.8-6.55 5.55-6.55 1.45 0 2.68.95 3.6.95.87 0 2.22-1.01 3.9-1.01.61 0 2.89.06 4.37 2.19-.13.09-2.38 1.37-2.38 4.19 0 3.26 2.85 4.42 2.96 4.45z"/></svg>অস্ট্রেলিয়ার Angie's অ্যাপটা দেখুন →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="features">
+  <div class="inner">
+    <div class="head reveal"><div class="eye">রেস্টুরেন্টের যা যা লাগে</div><h2>এক সিস্টেমে সব</h2></div>
+    <div class="fgrid"><div class="feat reveal d1"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 9l2-5h14l2 5"/><path d="M4 9v11h16V9"/><path d="M3 9h18M9 20v-6h6v6"/></svg></div><h3>ওয়েবসাইটে অর্ডার</h3><p>আপনার নিজের ডোমেইনে মেনু, ছবি আর অপশনসহ দ্রুত অর্ডারিং সাইট।</p></div><div class="feat reveal d2"><div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20M6 15h4"/></svg></div><h3>bKash, Nagad, SSLCommerz <span class="soon">শিগগিরই</span></h3><p>মোবাইল ব্যাংকিং, কার্ড আর ক্যাশ অন ডেলিভারি — সব এক জায়গায়।</p></div><div class="feat reveal d3"><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></div><h3>কিচেন প্রিন্টার + স্ক্রিন</h3><p>অর্ডার এলেই কিচেনে প্রিন্ট আর স্ক্রিনে দেখায়।</p></div><div class="feat reveal d1"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><h3>ডেলিভারি এলাকা</h3><p>এলাকা অনুযায়ী ডেলিভারি চার্জ আর মিনিমাম অর্ডার।</p></div><div class="feat reveal d2"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v7h-4M17 21v-2"/></svg></div><h3>QR টেবিল অর্ডার <span class="soon">শিগগিরই</span></h3><p>টেবিলে বসে QR স্ক্যান করে অর্ডার আর পেমেন্ট।</p></div><div class="feat reveal d3"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div><h3>POS — বিল, স্টক, স্টাফ</h3><p>দোকানের বিলিং, স্টক আর স্টাফের হিসাব এক জায়গায়।</p></div><div class="feat reveal d1"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.4l-5.5 2.9 1-6.2L3 9.7l6.2-.9z"/></svg></div><h3>পয়েন্ট আর কুপন</h3><p>বারবার আসা কাস্টমারকে পয়েন্ট, প্রোমো কোড।</p></div><div class="feat reveal d2"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1.5S10 8 12 8zM12 8c2-4 6-4 6-1.5S14 8 12 8z"/></svg></div><h3>পাঞ্চ কার্ড, গিফট কার্ড <span class="soon">শিগগিরই</span></h3><p>৯টা কিনলে ১০টা ফ্রি, VIP লেভেল, ডিজিটাল গিফট কার্ড।</p></div><div class="feat reveal d3"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17l4-8h5l3 8M10 9l2 8M14 5h3"/></svg></div><h3>রাইডার ট্র্যাকিং <span class="soon">শিগগিরই</span></h3><p>কাস্টমার দেখবে খাবার কোথায় আছে।</p></div><div class="feat reveal d1"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></div><h3>Messenger আর Instagram অটো-রিপ্লাই</h3><p>মেনু, দাম, সময় — ২৪ ঘণ্টা উত্তর, তারপর সরাসরি অর্ডার লিংক।</p></div><div class="feat reveal d2"><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></svg></div><h3>স্টক আর বকেয়া অ্যালার্ট</h3><p>মাল শেষ হওয়ার আগে আর বকেয়া থাকলে অটো মেসেজ।</p></div><div class="feat reveal d3"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6"/><path d="M16 4a4 4 0 0 1 0 8M22 21c0-3-2-5-4-5.5"/></svg></div><h3>একাধিক ব্রাঞ্চ</h3><p>সব ব্রাঞ্চ এক অ্যাডমিন থেকে চালান।</p></div></div>
+  </div>
+</section>
+
+<section class="section" id="marketing">
+  <div class="inner">
+    <div class="mk reveal">
+      <div><div class="eye">আমাদের পার্থক্য</div><h2>শুধু সফটওয়্যার না,<br/>কাস্টমারও আমরা আনি</h2><p class="lead">বেশিরভাগ কোম্পানি একটা লগইন দিয়ে চলে যায়। আমরা মার্কেটিং স্টুডিও — স্ট্যান্ডার্ড আর প্রিমিয়াম প্ল্যানে প্রতি মাসে আপনার রেস্টুরেন্টের পোস্ট আর রিল আমরাই বানিয়ে দিই।</p></div>
+      <div class="mk-stats"><div class="mk-stat"><strong>৮–১২</strong><span>পোস্ট প্রতি মাসে</span></div><div class="mk-stat"><strong>৪–৮</strong><span>রিল প্রতি মাসে</span></div><div class="mk-stat"><strong>২৪/৭</strong><span>Messenger ও Instagram-এ অটো উত্তর</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="case">
+  <div class="inner">
+    <div class="case reveal">
+      <img src="../images/angies-knb.jpg" alt="Angie's KnB online ordering built by MS Biz Studio"/>
+      <div class="case-b">
+        <div class="eye">🇦🇺 কেস স্টাডি</div>
+        <h2>Angie's KnB, মেলবোর্ন</h2>
+        <p>আগে অর্ডার আসত শুধু ফোনে আর দোকানে এসে। আমরা বানিয়েছি অনলাইন অর্ডারিং, iPhone অ্যাপ আর অ্যাডমিন প্যানেল — সব এক সিস্টেমে। এখন একই সিস্টেম বাংলাদেশের রেস্টুরেন্টের জন্য।</p>
+        <div class="tags"><span class="tag">ওয়েব অর্ডার</span><span class="tag">iPhone অ্যাপ</span><span class="tag">অ্যাডমিন প্যানেল</span><span class="tag">মার্কেটিং</span></div>
+        <blockquote>“Before this, everything ran through phone calls and messages — orders, updates, confirmations. It was chaotic. Now customers order through the app, the kitchen sees it instantly, and I can actually see what's happening across the business.”</blockquote>
+        <div class="qby">Angie's KnB <span>· রেস্টুরেন্ট · মেলবোর্ন, অস্ট্রেলিয়া</span></div>
+        <a class="tlink" href="https://angiesknb.com" target="_blank" rel="noopener">angiesknb.com দেখুন →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="integrations">
+  <div class="inner">
+    <div class="head reveal"><div class="eye">যেগুলোর সাথে কাজ করে</div><h2>বাংলাদেশের পেমেন্ট আর প্রিন্টার</h2></div>
+    <div class="ints"><div class="int reveal"><i></i>bKash <span class="soon">শিগগিরই</span></div><div class="int reveal"><i></i>Nagad <span class="soon">শিগগিরই</span></div><div class="int reveal"><i></i>SSLCommerz <span class="soon">শিগগিরই</span></div><div class="int reveal"><i></i>ক্যাশ অন ডেলিভারি</div><div class="int reveal"><i></i>থার্মাল প্রিন্টার</div><div class="int reveal"><i></i>Facebook Messenger</div><div class="int reveal"><i></i>Instagram</div><div class="int reveal"><i></i>Android <span class="soon">শিগগিরই</span></div></div>
+  </div>
+</section>
+
+<section class="section alt" id="pricing">
+  <div class="inner">
+    <div class="head reveal"><div class="eye">দাম</div><h2>কোনো কমিশন নেই, কখনো না</h2><p class="lead">প্রতি ব্রাঞ্চ। সেটআপ ফি একবার, তারপর মাসিক চার্জ। লক-ইন নেই। অর্ডারের কোনো লিমিট নেই।</p></div>
+    <div class="plans"><div class="plan reveal d1"><h3>বেসিক</h3><div class="pnote">নিজের অনলাইন অর্ডার চালু করুন</div><div class="price">৳19,999<small> সেটআপ</small></div><div class="pmon">+ ৳1,999 / মাস</div><a class="btn-ghost" href="https://wa.me/46765606712?text=%E0%A6%86%E0%A6%B8%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%AE%E0%A7%81%20%E0%A6%86%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%95%E0%A7%81%E0%A6%AE%20MS%20Biz%20Studio%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%B0%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%81%E0%A6%B0%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%20%E0%A6%85%E0%A6%B0%E0%A7%8D%E0%A6%A1%E0%A6%BE%E0%A6%B0%E0%A6%BF%E0%A6%82%20%E0%A6%B8%E0%A6%BF%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%87%E0%A6%AE%E0%A7%87%E0%A6%B0%20%E0%A6%A1%E0%A7%87%E0%A6%AE%E0%A7%8B%20%E0%A6%A6%E0%A7%87%E0%A6%96%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener">ফ্রি ডেমো নিন</a><ul class="ck"><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>ওয়েবসাইটে অর্ডার</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>bKash, Nagad, SSLCommerz <span class="soon">শিগগিরই</span></span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>ক্যাশ অন ডেলিভারি</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>কিচেন স্ক্রিন</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>কিচেন প্রিন্টারে অটো প্রিন্ট</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>কুপন আর পয়েন্ট</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>ডেলিভারি এলাকা</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>অ্যাডমিন প্যানেল + দৈনিক রিপোর্ট</span></li></ul></div><div class="plan pop reveal d2"><div class="pop-l">সবচেয়ে জনপ্রিয়</div><h3>স্ট্যান্ডার্ড</h3><div class="pnote">নিজের অ্যাপ + মার্কেটিং</div><div class="price">৳39,999<small> সেটআপ</small></div><div class="pmon">+ ৳3,999 / মাস</div><a class="btn-blue" href="https://wa.me/46765606712?text=%E0%A6%86%E0%A6%B8%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%AE%E0%A7%81%20%E0%A6%86%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%95%E0%A7%81%E0%A6%AE%20MS%20Biz%20Studio%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%B0%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%81%E0%A6%B0%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%20%E0%A6%85%E0%A6%B0%E0%A7%8D%E0%A6%A1%E0%A6%BE%E0%A6%B0%E0%A6%BF%E0%A6%82%20%E0%A6%B8%E0%A6%BF%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%87%E0%A6%AE%E0%A7%87%E0%A6%B0%20%E0%A6%A1%E0%A7%87%E0%A6%AE%E0%A7%8B%20%E0%A6%A6%E0%A7%87%E0%A6%96%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener">ফ্রি ডেমো নিন</a><ul class="ck"><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>বেসিকের সবকিছু</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>নিজের Android অ্যাপ <span class="soon">শিগগিরই</span></span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>iPhone অ্যাপ (+৳10,000)</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>QR টেবিল অর্ডার <span class="soon">শিগগিরই</span></span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>পুশ নোটিফিকেশন <span class="soon">শিগগিরই</span></span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>পাঞ্চ কার্ড <span class="soon">শিগগিরই</span></span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>Messenger ও Instagram অটো-রিপ্লাই</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>প্রতি মাসে ৮টা পোস্ট + ৪টা রিল</span></li></ul></div><div class="plan reveal d3"><h3>প্রিমিয়াম</h3><div class="pnote">বড় আর একাধিক ব্রাঞ্চের রেস্টুরেন্ট</div><div class="price">৳69,999<small> সেটআপ</small></div><div class="pmon">+ ৳6,999 / মাস</div><a class="btn-ghost" href="https://wa.me/46765606712?text=%E0%A6%86%E0%A6%B8%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%AE%E0%A7%81%20%E0%A6%86%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%95%E0%A7%81%E0%A6%AE%20MS%20Biz%20Studio%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%B0%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%81%E0%A6%B0%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%20%E0%A6%85%E0%A6%B0%E0%A7%8D%E0%A6%A1%E0%A6%BE%E0%A6%B0%E0%A6%BF%E0%A6%82%20%E0%A6%B8%E0%A6%BF%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%87%E0%A6%AE%E0%A7%87%E0%A6%B0%20%E0%A6%A1%E0%A7%87%E0%A6%AE%E0%A7%8B%20%E0%A6%A6%E0%A7%87%E0%A6%96%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener">ফ্রি ডেমো নিন</a><ul class="ck"><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>স্ট্যান্ডার্ডের সবকিছু</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>iPhone অ্যাপ সহ</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>POS — বিল, স্টক, স্টাফ</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>একাধিক ব্রাঞ্চ</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>রাইডার ট্র্যাকিং <span class="soon">শিগগিরই</span></span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>স্টক আর বকেয়া অ্যালার্ট</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>অ্যাডভান্সড রিপোর্ট</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>AI চ্যাটবট</span></li><li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>প্রতি মাসে ১২টা পোস্ট + ৮টা রিল</span></li></ul></div></div>
+    <p class="p-extra">বছরের টাকা একসাথে দিলে ২ মাস ফ্রি।</p>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="inner">
+    <div class="head reveal"><h2>রেস্টুরেন্ট মালিকরা যা জিজ্ঞেস করেন</h2></div>
+    <div class="faq"><details class="reveal"><summary>অর্ডারে কি কোনো কমিশন কাটবেন?</summary><p>না। শুধু মাসিক নির্দিষ্ট চার্জ। পেমেন্ট গেটওয়ের (bKash/SSLCommerz) সাধারণ চার্জটা তাদের, আমাদের না।</p></details><details class="reveal"><summary>Foodpanda বা Pathao Food রাখতে পারব?</summary><p>অবশ্যই। নতুন কাস্টমারের জন্য ওগুলো রাখুন, আর নিয়মিত কাস্টমারদের নিজের অ্যাপে আনুন — সেখানে পুরো লাভ আপনার।</p></details><details class="reveal"><summary>সেটআপ ফি কি প্রতি বছর দিতে হবে?</summary><p>না, সেটআপ ফি একবারই। এরপর শুধু মাসিক চার্জ।</p></details><details class="reveal"><summary>কোন প্রিন্টার লাগবে?</summary><p>সাধারণ থার্মাল রসিদ প্রিন্টার হলেই চলবে। না থাকলে কোনটা কিনবেন আর সেটআপ আমরা করে দিই।</p></details><details class="reveal"><summary>চালু হতে কত দিন লাগে?</summary><p>সাধারণত ১ থেকে ৩ সপ্তাহ, মেনু কত বড় তার উপর। অ্যাপ স্টোরের রিভিউতে কয়েক দিন বেশি লাগতে পারে।</p></details><details class="reveal"><summary>চুক্তিতে আটকে থাকতে হবে?</summary><p>না। মাসে মাসে দিন, যখন খুশি বন্ধ করুন। কাস্টমারের তথ্য আপনারই থাকবে।</p></details></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="inner">
+    <div class="end reveal">
+      <h2>চলুন আপনার নিজের অর্ডারিং চালু করি</h2>
+      <p>আপনার রেস্টুরেন্টের কথা বলুন। ফ্রিতে ডেমো আর কত কমিশন বাঁচবে তার হিসাব দেখাব।</p>
+      <div class="btns"><a class="btn-w" href="https://wa.me/46765606712?text=%E0%A6%86%E0%A6%B8%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%AE%E0%A7%81%20%E0%A6%86%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%95%E0%A7%81%E0%A6%AE%20MS%20Biz%20Studio%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%B0%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%81%E0%A6%B0%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%20%E0%A6%85%E0%A6%B0%E0%A7%8D%E0%A6%A1%E0%A6%BE%E0%A6%B0%E0%A6%BF%E0%A6%82%20%E0%A6%B8%E0%A6%BF%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%87%E0%A6%AE%E0%A7%87%E0%A6%B0%20%E0%A6%A1%E0%A7%87%E0%A6%AE%E0%A7%8B%20%E0%A6%A6%E0%A7%87%E0%A6%96%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener">💬 WhatsApp করুন</a><a class="btn-o" href="mailto:hello@msbizstudio.com">✉️ ইমেইল</a></div>
+    </div>
+  </div>
+</section>
+
+<footer><span>© 2026 MS Biz Studio · রেস্টুরেন্ট অর্ডারিং প্ল্যাটফর্ম</span><a href="../index.html">msbizstudio.com</a></footer>
+<a class="wa-float" href="https://wa.me/46765606712?text=%E0%A6%86%E0%A6%B8%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A6%BE%E0%A6%AE%E0%A7%81%20%E0%A6%86%E0%A6%B2%E0%A6%BE%E0%A6%87%E0%A6%95%E0%A7%81%E0%A6%AE%20MS%20Biz%20Studio%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%B0%E0%A7%87%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%81%E0%A6%B0%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%20%E0%A6%85%E0%A6%B0%E0%A7%8D%E0%A6%A1%E0%A6%BE%E0%A6%B0%E0%A6%BF%E0%A6%82%20%E0%A6%B8%E0%A6%BF%E0%A6%B8%E0%A7%8D%E0%A6%9F%E0%A7%87%E0%A6%AE%E0%A7%87%E0%A6%B0%20%E0%A6%A1%E0%A7%87%E0%A6%AE%E0%A7%8B%20%E0%A6%A6%E0%A7%87%E0%A6%96%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.23 9.43-9.44 9.43zm8.03-17.46A11.28 11.28 0 0 0 12.05.72C5.8.72.71 5.8.71 12.05c0 2 .52 3.95 1.52 5.67L.62 23.6l6.02-1.58a11.3 11.3 0 0 0 5.41 1.38h.01c6.25 0 11.34-5.09 11.34-11.34 0-3.03-1.18-5.88-3.32-8.02z"/></svg></a>
+<script>
+(function(){
+  var C={"cur": "\u09f3", "plan": 3999, "loc": "en-IN"};
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  function m(n){return C.cur+Math.round(n).toLocaleString(C.loc);}
+  var s=document.getElementById('cs'),r=document.getElementById('cr');
+  function u(){var sv=+s.value,rv=+r.value,mo=sv*rv/100,yr=mo*12,pl=C.plan*12;
+    document.getElementById('csv').textContent=m(sv);document.getElementById('crv').textContent=rv+'%';
+    document.getElementById('o1').textContent=m(mo);document.getElementById('o2').textContent=m(yr);
+    document.getElementById('o3').textContent=m(pl)+(C.cur=='$'?'/yr':'/বছর');
+    document.getElementById('o4').textContent=m(Math.max(0,yr-pl));}
+  s.addEventListener('input',u);r.addEventListener('input',u);u();
+  var bar=document.getElementById('bdbar');
+  if(bar){try{var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';if(/Asia\/(Dhaka|Dacca)/.test(tz)||(navigator.language||'').toLowerCase().indexOf('bn')===0)bar.style.display='block';}catch(e){}}
+})();
+</script>
+</body>
+</html>
