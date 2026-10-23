@@ -391,7 +391,15 @@ footer a{text-decoration:none;font-weight:700;color:var(--sub);}
     document.getElementById('o4').textContent=m(Math.max(0,yr-pl));}
   s.addEventListener('input',u);r.addEventListener('input',u);u();
   var bar=document.getElementById('bdbar');
-  if(bar){try{var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';if(/Asia\/(Dhaka|Dacca)/.test(tz)||(navigator.language||'').toLowerCase().indexOf('bn')===0)bar.style.display='block';}catch(e){}}
+  if(bar){
+    var q=location.search;
+    try{if(/lang=en/.test(q))localStorage.setItem('msbiz_lang','en');}catch(e){}
+    var keepEn=false;try{keepEn=localStorage.getItem('msbiz_lang')==='en';}catch(e){}
+    var isBD=function(c){if(c==='BD'){if(keepEn)bar.style.display='block';else location.replace('bn/restaurant.html');}};
+    fetch('/api/geo').then(function(r){return r.json();}).then(function(d){isBD(d.country);}).catch(function(){
+      try{var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';if(/Asia\/(Dhaka|Dacca)/.test(tz))bar.style.display='block';}catch(e){}
+    });
+  }
 })();
 </script>
 </body>
