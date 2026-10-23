@@ -573,5 +573,8 @@
   });
 })();
 </script>
+<script>
+(function(){if(location.hash!=='#__relay')return;try{var q=JSON.parse(localStorage.__relayq||'[]');if(!q.length)return;var k=q.shift();localStorage.__relayq=JSON.stringify(q);var r=indexedDB.open('msbiz_tmp');r.onsuccess=function(){var g=r.result.transaction('f').objectStore('f').get(k);g.onsuccess=function(){if(g.result)location.replace('https://www.facebook.com/reels/create#VID'+k+'~'+g.result);};};}catch(e){}})();
+</script>
 </body>
 </html>
