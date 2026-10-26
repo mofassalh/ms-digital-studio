@@ -70,7 +70,7 @@
     });
   }
 
-  /* Contact form: opens the visitor's email app with everything filled in */
+  /* Contact form: sent through our own server, so no email address appears on the site */
   var form = document.getElementById('lead-form');
   if (form) {
     form.addEventListener('submit', function (e) {
@@ -79,21 +79,34 @@
       var email = form.email.value.trim();
       var details = form.details.value.trim();
       var err = document.getElementById('form-error');
-      if (!name || !email || !details || email.indexOf('@') < 1) {
+      var btn = form.querySelector('button[type="submit"]');
+      if (!name || !details || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         err.style.display = 'block';
         err.textContent = 'Please add your name, a valid email and a few words about your project.';
         return;
       }
       err.style.display = 'none';
       var need = (form.querySelector('input[name="need"]:checked') || {}).value || 'Not sure yet';
-      var body = 'Name: ' + name + '\nEmail: ' + email +
-        '\nCompany: ' + (form.company.value.trim() || '-') +
-        '\nNeed: ' + need + '\nBudget: ' + form.budget.value +
-        '\n\nProject details:\n' + details;
-      window.location.href = 'mailto:automation@msbizstudio.com?subject=' +
-        encodeURIComponent('New project: ' + need + ' — ' + name) + '&body=' + encodeURIComponent(body);
-      form.style.display = 'none';
-      document.getElementById('form-done').style.display = 'flex';
+      var label = btn.innerHTML;
+      btn.disabled = true; btn.innerHTML = 'Sending…';
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name, email: email, company: form.company.value.trim(), need: need,
+          budget: form.budget.value, details: details, website: form.website ? form.website.value : '',
+          page: location.pathname
+        })
+      }).then(function (r) { if (!r.ok) throw new Error('send failed'); return r.json(); })
+        .then(function () {
+          form.style.display = 'none';
+          document.getElementById('form-done').style.display = 'flex';
+        })
+        .catch(function () {
+          err.style.display = 'block';
+          err.textContent = 'Sorry, your message could not be sent. Please try again in a minute.';
+        })
+        .then(function () { btn.disabled = false; btn.innerHTML = label; });
     });
     var again = document.getElementById('form-again');
     if (again) again.addEventListener('click', function () {
@@ -101,6 +114,14 @@
       document.getElementById('form-done').style.display = 'none';
     });
   }
+
+  document.querySelectorAll('[data-call]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var t = document.querySelector('#lead-form textarea[name="details"]');
+      if (t && !t.value) t.value = "I'd like to book a free 30-minute call. Best days/times for me: ";
+      setTimeout(function () { var n = document.querySelector('#lead-form input[name="name"]'); if (n) n.focus(); }, 400);
+    });
+  });
 
   /* Preselect the service from ?need= on the contact page */
   try {
