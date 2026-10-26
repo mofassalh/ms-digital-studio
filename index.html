@@ -1,577 +1,241 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MS Biz Studio - Restaurant Ordering Systems, Apps & Automation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    :root{--navy:#0F172A;--blue:#1A5FA8;--blue2:#2E8DE0;--text:#0F172A;--sub:#475569;--muted:#94A3B8;--border:#E2E8F0;--bg:#F8FAFC;}
-    html{scroll-behavior:smooth;}
-    body{font-family:'Inter',sans-serif;background:#fff;color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
-    .reveal.visible{opacity:1;transform:translateY(0);}
-    .reveal-d1{transition-delay:0.1s;}.reveal-d2{transition-delay:0.2s;}.reveal-d3{transition-delay:0.3s;}.reveal-d4{transition-delay:0.4s;}
-    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;}
-    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-    .nav-logo img{height:32px;}
-    .nav-logo span{font-size:15px;font-weight:800;color:var(--text);letter-spacing:-0.3px;}
-    .nav-links{display:flex;gap:32px;list-style:none;}
-    .nav-links a{font-size:13.5px;font-weight:500;color:var(--sub);text-decoration:none;transition:color 0.15s;}
-    .nav-links a:hover{color:var(--blue);}
-    .nav-cta{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:13.5px;font-weight:700;padding:10px 22px;border-radius:10px;text-decoration:none;}
-    .nav-cta:hover{opacity:0.88;}
-    @media(max-width:700px){nav{padding:0 20px;}.nav-links{display:none;}}
-    .hero{padding:100px 24px 80px;text-align:center;position:relative;overflow:hidden;}
-    .hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(46,141,224,0.08) 0%,transparent 70%);pointer-events:none;}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-    .h-a1{animation:fadeUp 0.6s ease 0.1s both;}
-    .h-a2{animation:fadeUp 0.6s ease 0.25s both;}
-    .h-a3{animation:fadeUp 0.6s ease 0.4s both;}
-    .h-a4{animation:fadeUp 0.6s ease 0.55s both;}
-    .h-a5{animation:fadeUp 0.6s ease 0.7s both;}
-    .h-a6{animation:fadeUp 0.6s ease 0.85s both;}
-    .available{display:inline-flex;align-items:center;gap:8px;background:#F0FDF4;border:1px solid #BBF7D0;color:#15803D;font-size:12px;font-weight:700;padding:7px 16px;border-radius:30px;margin-bottom:28px;}
-    .available .dot{width:7px;height:7px;border-radius:50%;background:#22C55E;animation:blink 2s ease-in-out infinite;}
-    @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
-    .hero-h1{font-size:56px;font-weight:900;letter-spacing:-2.5px;line-height:1.05;color:var(--text);margin-bottom:22px;max-width:780px;margin-left:auto;margin-right:auto;}
-    .hero-h1 em{font-style:normal;background:linear-gradient(135deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    @media(max-width:700px){.hero-h1{font-size:34px;letter-spacing:-1.5px;}}
-    .hero-sub{font-size:17px;color:var(--sub);line-height:1.7;max-width:540px;margin:0 auto 36px;}
-    .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:52px;}
-    .btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-size:14px;font-weight:700;padding:14px 30px;border-radius:10px;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;}
-    .btn-blue:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,95,168,0.3);}
-    .btn-ghost{background:#fff;color:var(--text);border:1.5px solid var(--border);font-size:14px;font-weight:600;padding:14px 30px;border-radius:10px;text-decoration:none;transition:border-color 0.15s,transform 0.15s;}
-    .btn-ghost:hover{border-color:var(--blue);transform:translateY(-2px);}
-    .cred-strip{max-width:900px;margin:0 auto;}.cred-strip-headline{font-size:15px;font-weight:600;color:var(--sub);text-align:center;margin-bottom:20px;line-height:1.6;}.cred-strip-headline strong{color:var(--text);font-weight:800;}.cred-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;}.cred-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:18px 16px;text-align:center;}.cred-card-icon{font-size:22px;margin-bottom:10px;}.cred-card-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:6px;}.cred-card-desc{font-size:11.5px;color:var(--muted);line-height:1.5;}.cred-strip-footer{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 20px;display:flex;align-items:center;justify-content:center;gap:12px;}.cred-strip-footer span{font-size:13px;font-weight:600;color:var(--sub);}.cred-countries{display:flex;gap:16px;font-size:13px;font-weight:700;color:var(--blue);}@media(max-width:700px){.cred-cards{grid-template-columns:1fr 1fr;}.cred-strip-footer{flex-direction:column;gap:8px;}}.cred-card{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;}.cred-card.visible{opacity:1;transform:translateY(0);}.cred-card:nth-child(1){transition-delay:0.1s;}.cred-card:nth-child(2){transition-delay:0.2s;}.cred-card:nth-child(3){transition-delay:0.3s;}.cred-card:nth-child(4){transition-delay:0.4s;}.cred-strip-footer{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease 0.5s,transform 0.5s ease 0.5s;}.cred-strip-footer.visible{opacity:1;transform:translateY(0);}
-    
-    
-    
-    
-    
-    .section{padding:96px 48px;}
-    .section-alt{background:var(--bg);}
-    .section-dark{background:var(--navy);}
-    .inner{max-width:1080px;margin:0 auto;}
-    @media(max-width:700px){.section{padding:64px 20px;}}
-    .section-head{text-align:center;margin-bottom:52px;}
-    .eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
-    .section-dark .eyebrow{color:#93C5FD;}
-    h2{font-size:38px;font-weight:900;letter-spacing:-1px;line-height:1.1;color:var(--text);margin-bottom:14px;}
-    .section-dark h2{color:#fff;}
-    .section-lead{font-size:16px;color:var(--sub);line-height:1.7;max-width:580px;margin:0 auto;}
-    .section-dark .section-lead{color:#94A3B8;}
-    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);position:relative;gap:8px;}
-    .process-grid::before{content:'';position:absolute;top:27px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--blue),var(--blue2));z-index:0;}
-    @media(max-width:860px){.process-grid{grid-template-columns:1fr 1fr;gap:24px;}.process-grid::before{display:none;}}
-    @media(max-width:500px){.process-grid{grid-template-columns:1fr;}}
-    .process-step{padding:0 16px;text-align:center;position:relative;z-index:1;}
-    .step-circle{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue2));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;margin:0 auto 20px;box-shadow:0 4px 16px rgba(26,95,168,0.3);}
-    .step-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:10px;}
-    .step-desc{font-size:13px;color:var(--sub);line-height:1.65;}
-    .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-    @media(max-width:700px){.services-grid{grid-template-columns:1fr;}}
-    .service-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;}
-    .service-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(15,23,42,0.08);border-color:rgba(46,141,224,0.3);}
-    .service-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(26,95,168,0.1),rgba(46,141,224,0.15));display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;}
-    .service-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:6px;}
-    .service-problem{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;}
-    .service-desc{font-size:13.5px;color:var(--sub);line-height:1.65;}
-    .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-    @media(max-width:700px){.projects-grid{grid-template-columns:1fr;}}
-    .project-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;}
-    .project-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(15,23,42,0.1);}
-    .project-img{width:100%;height:200px;object-fit:cover;display:block;background:var(--bg);}
-    .project-body{padding:24px;}
-    .project-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
-    .project-country{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);}
-    .project-name{font-size:17px;font-weight:800;color:var(--text);margin-bottom:10px;}
-    .project-story{font-size:13.5px;color:var(--sub);line-height:1.65;margin-bottom:14px;}
-    .project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
-    .tag{font-size:11px;font-weight:600;background:var(--bg);border:1px solid var(--border);color:var(--sub);padding:3px 10px;border-radius:20px;}
-    .project-link{font-size:13px;font-weight:700;color:var(--blue);text-decoration:none;}
-    .project-link:hover{text-decoration:underline;}
-    .testimonials-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-    @media(max-width:700px){.testimonials-grid{grid-template-columns:1fr;}}
-    .tcard{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:32px;transition:background 0.2s;}
-    .tcard:hover{background:rgba(255,255,255,0.08);}
-    .tquote-mark{font-size:56px;line-height:1;color:rgba(46,141,224,0.4);font-family:Georgia,serif;margin-bottom:8px;}
-    .tquote{font-size:15px;font-weight:500;color:#E2E8F0;line-height:1.75;margin-bottom:24px;font-style:italic;}
-    .tauthor{display:flex;align-items:center;gap:12px;}
-    .tavatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue2));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;flex-shrink:0;}
-    .tname{font-size:13.5px;font-weight:700;color:#fff;}
-    .trole{font-size:12px;color:#64748B;margin-top:2px;}
-    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-    @media(max-width:700px){.why-grid{grid-template-columns:1fr;}}
-    .why-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:32px;transition:transform 0.2s,box-shadow 0.2s;}
-    .why-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(15,23,42,0.08);}
-    .why-num{font-size:42px;font-weight:900;letter-spacing:-2px;background:linear-gradient(135deg,var(--blue),var(--blue2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px;line-height:1;}
-    .why-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:10px;}
-    .why-desc{font-size:13.5px;color:var(--sub);line-height:1.65;}
-    .team-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:16px;}
-    @media(max-width:860px){.team-grid{grid-template-columns:1fr 1fr;}}
-    @media(max-width:500px){.team-grid{grid-template-columns:1fr;}}
-    .team-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;transition:transform 0.2s,box-shadow 0.2s;}
-    .team-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(15,23,42,0.08);}
-    .team-card.featured{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue);}
-    .mavatar{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--blue2));display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;margin-bottom:16px;}
-    .mname{font-size:16px;font-weight:800;color:var(--text);margin-bottom:3px;}
-    .mrole{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--blue);margin-bottom:14px;}
-    .mbio{font-size:13px;color:var(--sub);line-height:1.7;}
-    .mbio strong{color:var(--text);font-weight:700;}
-    .mtags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
-    .cta-inner{max-width:620px;margin:0 auto;text-align:center;}
-    .cta-inner p{font-size:16px;color:#94A3B8;line-height:1.7;margin-bottom:36px;}
-    .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-    .btn-white{background:#fff;color:var(--navy);font-size:14px;font-weight:700;padding:14px 28px;border-radius:10px;text-decoration:none;transition:transform 0.15s;}
-    .btn-white:hover{transform:translateY(-2px);}
-    .btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.2);font-size:14px;font-weight:600;padding:14px 28px;border-radius:10px;text-decoration:none;transition:border-color 0.15s,transform 0.15s;}
-    .btn-outline:hover{border-color:rgba(255,255,255,0.5);transform:translateY(-2px);}
-    footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.06);padding:28px 48px;display:flex;align-items:center;justify-content:space-between;}
-    .footer-logo{display:flex;align-items:center;gap:9px;}
-    .footer-logo img{height:28px;filter:brightness(0) invert(1);opacity:0.6;}
-    .footer-logo span{font-size:14px;font-weight:700;color:rgba(255,255,255,0.4);}
-    footer p{font-size:12px;color:#334155;}
-    @media(max-width:600px){footer{flex-direction:column;gap:12px;text-align:center;padding:24px 20px;}}
-
-    /* hero showcase */
-    .showcase{position:relative;max-width:900px;margin:8px auto 64px;}
-    .browser{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 40px 90px -20px rgba(15,23,42,0.28);}
-    .browser-bar{display:flex;align-items:center;gap:6px;padding:11px 16px;background:var(--bg);border-bottom:1px solid var(--border);}
-    .browser-bar i{width:10px;height:10px;border-radius:50%;display:block;}
-    .browser-bar i:nth-child(1){background:#FCA5A5;}.browser-bar i:nth-child(2){background:#FCD34D;}.browser-bar i:nth-child(3){background:#86EFAC;}
-    .browser-url{margin:0 auto;width:min(300px,60%);background:#fff;border:1px solid var(--border);border-radius:7px;font-size:11.5px;color:var(--muted);padding:5px 10px;text-align:center;}
-    .browser img{width:100%;height:460px;object-fit:cover;object-position:top;display:block;}
-    .float-card{position:absolute;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--border);border-radius:16px;padding:12px 20px 12px 12px;box-shadow:0 18px 44px rgba(15,23,42,0.16);text-decoration:none;text-align:left;animation:floaty 6s ease-in-out infinite;}
-    .fc-left{left:-56px;bottom:56px;}
-    .fc-right{right:-48px;top:72px;animation-delay:2s;}
-    .float-card img{width:46px;height:46px;border-radius:11px;object-fit:cover;}
-    .fc-apple{width:46px;height:46px;border-radius:11px;background:#0F172A;display:flex;align-items:center;justify-content:center;}
-    .fc-apple svg{width:22px;height:22px;fill:#fff;}
-    .fc-t{font-size:13.5px;font-weight:800;color:var(--text);display:flex;align-items:center;}
-    .fc-s{font-size:11.5px;color:var(--muted);margin-top:2px;}
-    .fc-live{width:7px;height:7px;border-radius:50%;background:#22C55E;margin-right:7px;box-shadow:0 0 0 3px rgba(34,197,94,0.18);}
-    @keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-    @media(max-width:1000px){.fc-left{left:12px;bottom:-26px;}.fc-right{right:12px;top:-26px;}}
-    @media(max-width:700px){.browser img{height:230px;object-position:left top;}.fc-t,.fc-s{white-space:nowrap;}.fc-left{display:none;}.fc-right{top:auto;bottom:-24px;right:50%;transform:translateX(50%);animation:none;}.showcase{margin-bottom:56px;}}
-    /* svg icons in credential cards */
-    .cred-card-icon{width:44px;height:44px;margin:0 auto 12px;border-radius:12px;background:linear-gradient(135deg,rgba(26,95,168,0.1),rgba(46,141,224,0.16));display:flex;align-items:center;justify-content:center;}
-    .cred-card-icon svg{width:22px;height:22px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-    .cred-card{background:#fff;}
-    /* app store badge on project */
-    .live-badge{text-decoration:none;display:inline-flex;align-items:center;gap:6px;background:#0F172A;color:#fff;font-size:11px;font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:12px;}
-    .live-badge svg{width:12px;height:12px;fill:#fff;}
-    .live-badge .fc-live{margin-right:0;}
-    /* floating whatsapp */
-    .wa-float{position:fixed;right:22px;bottom:22px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(37,211,102,0.45);transition:transform 0.2s;}
-    .wa-float:hover{transform:scale(1.08);}
-    .wa-float svg{width:28px;height:28px;fill:#fff;}
-    @media(prefers-reduced-motion:reduce){.float-card{animation:none;}}
-    .service-icon svg{width:22px;height:22px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-    @media(max-width:700px){.service-card{padding:22px;}.project-body{padding:20px;}}
-    .service-card{display:flex;flex-direction:column;}
-    .service-price{margin-top:auto;padding-top:16px;border-top:1px dashed var(--border);margin-top:18px;font-size:12.5px;font-weight:600;color:var(--muted);}
-    .service-price strong{font-size:20px;font-weight:900;color:var(--text);letter-spacing:-0.5px;margin:0 2px 0 4px;}
-    .price-suf{font-size:12px;color:var(--muted);font-weight:600;}
-    .price-note{text-align:center;font-size:13px;color:var(--muted);margin-top:24px;}
-    .nav-resto{color:var(--blue)!important;font-weight:700!important;}
-    a.available{text-decoration:none;color:#15803D;}
-    a.available:hover{border-color:#86EFAC;}
-    .resto-band{padding:88px 48px;background:linear-gradient(180deg,#F5F9FF,#fff);border-top:1px solid var(--border);}
-    @media(max-width:700px){.resto-band{padding:64px 20px;}}
-    .rb-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative;}
-    .rb-flow::before{content:'';position:absolute;top:44px;left:12%;right:12%;border-top:2px dashed #93C5FD;}
-    @media(max-width:860px){.rb-flow{grid-template-columns:1fr 1fr;}.rb-flow::before{display:none;}}
-    .rb-step{background:#fff;border:1px solid var(--border);border-radius:16px;padding:22px 18px;text-align:center;position:relative;}
-    .rb-ic{width:48px;height:48px;border-radius:14px;margin:0 auto 14px;background:linear-gradient(135deg,var(--blue),var(--blue2));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(26,95,168,0.25);}
-    .rb-ic svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-    .rb-t{font-size:15px;font-weight:800;margin-bottom:6px;}
-    .rb-d{font-size:13px;color:var(--sub);line-height:1.55;}
-    .rb-cta{margin-top:28px;background:#fff;border:1px solid var(--border);border-radius:18px;padding:20px 24px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:space-between;}
-    .rb-stat{display:flex;align-items:baseline;gap:8px;}
-    .rb-stat strong{font-size:26px;font-weight:900;color:var(--blue);letter-spacing:-0.5px;}
-    .rb-stat span{font-size:13px;color:var(--sub);font-weight:600;}
-    @media(max-width:700px){.rb-cta{flex-direction:column;align-items:stretch;text-align:center;gap:14px;}.rb-stat{justify-content:center;}}
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MS Biz Studio — Business Automation, Restaurant Systems & Custom Software</title>
+<meta name="description" content="Automate your business and go digital: restaurant ordering systems with zero commission, custom CRMs, apps and automation. Clients in Australia, Spain, Sweden and Bangladesh."/>
+<meta name="theme-color" content="#0B3B36"/>
+<meta property="og:title" content="MS Biz Studio — Business Automation, Restaurant Systems & Custom Software"/>
+<meta property="og:description" content="Automate your business and go digital: restaurant ordering systems with zero commission, custom CRMs, apps and automation. Clients in Australia, Spain, Sweden and Bangladesh."/>
+<meta property="og:image" content="https://msbizstudio.com/images/fb-cover.jpg"/>
+<link rel="icon" href="images/icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/site.css"/>
 </head>
 <body>
-<nav>
-  <a class="nav-logo" href="#">
-    <img src="images/icon.png" alt="MS Biz Studio"/>
-    <span>MS Biz Studio</span>
-  </a>
-  <ul class="nav-links">
-    <li><a class="nav-resto" href="restaurants.html" data-bd-href="bn/restaurant.html">For Restaurants</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#team">Team</a></li>
-  </ul>
-  <a class="nav-cta" href="#contact">Let's talk</a>
-</nav>
-
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><img src="images/logo-white.png" alt="" width="37" height="30"/>MS Biz Studio</a>
+    <ul class="nav-links"><li><a href="index.html" aria-current="page">Home</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul>
+    <a class="btn btn-gold btn-sm nav-cta" href="contact.html">Book a Call</a>
+    <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile"><a href="index.html" aria-current="page">Home</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="btn btn-gold" href="contact.html">Book a Free Call</a></nav>
+</header>
+<main id="main">
 <section class="hero">
-  <a class="available h-a1" href="restaurants.html" data-bd-href="bn/restaurant.html"><div class="dot"></div> Restaurant platform · live in Melbourne, now in Bangladesh →</a>
-  <h1 class="hero-h1 h-a2">Your restaurant's own ordering system.<br/><em>Zero commission.</em></h1>
-  <p class="hero-sub h-a3">Online ordering, your own app, POS integration and automatic kitchen printing — plus the marketing that brings customers in. And for every other business: websites, apps and automation.</p>
-  <div class="hero-btns h-a4">
-    <a href="restaurants.html" data-bd-href="bn/restaurant.html" class="btn-blue">See the Restaurant System</a>
-    <a href="#work" class="btn-ghost">See Our Work</a>
-  </div>
-  <div class="showcase h-a5">
-    <div class="browser">
-      <div class="browser-bar"><i></i><i></i><i></i><div class="browser-url">angiesknb.com</div></div>
-      <img src="images/angies-knb.jpg" alt="Angie's KnB online ordering platform built by MS Biz Studio"/>
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Business automation · Restaurant systems</span>
+      <h1>Automate your business. <span class="gold">Go digital.</span></h1>
+      <p class="sub">We replace manual work with custom software, automated workflows and online ordering — so your team spends time on customers, not spreadsheets.</p>
+      <div class="hero-btns">
+        <a class="btn btn-gold" href="contact.html">Start Your Digital Transformation →</a>
+        <a class="btn btn-ghost" href="portfolio.html">See Our Work</a>
+      </div>
+      <p class="trust"><span>Active clients in</span><span>Australia</span><span>·</span><span>Spain</span><span>·</span><span>Sweden</span><span>·</span><span>Bangladesh</span></p>
     </div>
-    <div class="float-card fc-left">
-      <img src="images/arctic-peptides.jpg" alt=""/>
-      <div><div class="fc-t">Arctic Peptides</div><div class="fc-s">Website + admin panel · Sweden</div></div>
-    </div>
-    <a class="float-card fc-right" href="https://apps.apple.com/au/app/angies-kebabs-burgers/id6786436972" target="_blank" rel="noopener">
-      <div class="fc-apple"><svg viewBox="0 0 24 24"><path d="M16.37 1.43c0 1.14-.49 2.27-1.18 3.08-.74.9-1.99 1.57-2.99 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.57-2.27 1.21-2.98.8-.94 2.14-1.64 3.25-1.68.03.13.05.28.05.43zm4.56 15.71c-.03.07-.46 1.58-1.52 3.12-.94 1.34-1.94 2.71-3.43 2.71-1.52 0-1.9-.88-3.63-.88-1.7 0-2.3.91-3.67.91-1.38 0-2.33-1.26-3.43-2.8C4 18.38 2.97 15.57 2.97 12.92c0-4.28 2.8-6.55 5.55-6.55 1.45 0 2.68.95 3.6.95.87 0 2.22-1.01 3.9-1.01.61 0 2.89.06 4.37 2.19-.13.09-2.38 1.37-2.38 4.19 0 3.26 2.85 4.42 2.96 4.45z"/></svg></div>
-      <div><div class="fc-t"><span class="fc-live"></span>iOS app is live</div><div class="fc-s">Angie's KnB · on the App Store</div></div>
-    </a>
-  </div>
-  <div class="cred-strip h-a6">
-    <p class="cred-strip-headline"><strong>15+ years of real business experience</strong> — built into every project we take on.</p>
-    <div class="cred-cards">
-      <div class="cred-card">
-        <div class="cred-card-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
-        <div class="cred-card-title">P&L & Budgeting</div>
-        <div class="cred-card-desc">Full financial ownership, cost management & reporting</div>
-      </div>
-      <div class="cred-card">
-        <div class="cred-card-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6"/><path d="M16 4a4 4 0 0 1 0 8"/><path d="M22 21c0-3-2-5-4-5.5"/></svg></div>
-        <div class="cred-card-title">Team Leadership</div>
-        <div class="cred-card-desc">Large team hiring, training, KPIs & full accountability</div>
-      </div>
-      <div class="cred-card">
-        <div class="cred-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg></div>
-        <div class="cred-card-title">Operations at Scale</div>
-        <div class="cred-card-desc">End-to-end systems, processes & business infrastructure</div>
-      </div>
-      <div class="cred-card">
-        <div class="cred-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <div class="cred-card-title">Cyber Security</div>
-        <div class="cred-card-desc">MSc, KTH Royal Institute of Technology, Sweden</div>
-      </div>
-    </div>
-    <div class="cred-strip-footer">
-      <span>🌍 Active clients across</span>
-      <div class="cred-countries">
-        <span>🇦🇺 Australia</span>
-        <span>🇪🇸 Spain</span>
-        <span>🇸🇪 Sweden</span>
-        <span>🇧🇩 Bangladesh</span>
-      </div>
-    </div>
+    <div class="globe-wrap" aria-hidden="true">
+  <svg class="globe" viewBox="0 0 460 460">
+    <circle cx="230" cy="230" r="170" fill="#0F4A44" stroke="#2A8A7D" stroke-width="1.5"/>
+    <g class="spin" fill="none" stroke="#2A8A7D" stroke-width="1">
+      <ellipse cx="230" cy="230" rx="170" ry="60"/><ellipse cx="230" cy="230" rx="170" ry="118"/>
+      <ellipse cx="230" cy="230" rx="60" ry="170"/><ellipse cx="230" cy="230" rx="118" ry="170"/>
+      <line x1="60" y1="230" x2="400" y2="230"/><line x1="230" y1="60" x2="230" y2="400"/>
+    </g>
+    <g fill="none" stroke="#C9A24B" stroke-width="2" stroke-dasharray="4 5">
+      <path d="M200 140 Q250 95 305 175"/><path d="M305 175 Q345 260 322 318"/><path d="M200 140 Q150 170 160 210"/>
+    </g>
+    <g fill="#C9A24B">
+      <circle cx="200" cy="140" r="7"/><circle cx="160" cy="210" r="6"/><circle cx="305" cy="175" r="6"/><circle cx="322" cy="318" r="6"/>
+      <circle class="pulse" cx="200" cy="140" r="12" fill="none" stroke="#C9A24B"/><circle class="pulse" cx="322" cy="318" r="11" fill="none" stroke="#C9A24B"/>
+    </g>
+    <g fill="#fff" font-family="Inter,sans-serif" font-size="12" font-weight="600">
+      <text x="212" y="132">Stockholm</text><text x="92" y="214">Barcelona</text><text x="314" y="166">Dhaka</text><text x="252" y="345">Melbourne</text>
+    </g>
+  </svg>
+  <span class="globe-chip chip-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h18"/><path d="M5 11a7 7 0 0 1 14 0"/><path d="M4 15h16l-1.5 5h-13z"/><path d="M12 4V2"/></svg>Restaurants</span>
+  <span class="globe-chip chip-2"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Automation</span>
+  <span class="globe-chip chip-3"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>CRM</span>
+  <span class="globe-chip chip-4"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Apps</span>
+</div>
   </div>
 </section>
 
-<section class="resto-band">
-  <div class="inner">
-    <div class="section-head reveal">
-      <div class="eyebrow">For Restaurants</div>
-      <h2>From tap to kitchen in seconds.</h2>
-      <p class="section-lead">One system from the customer's phone to your kitchen printer. Flat monthly fee — no commission on your orders.</p>
-    </div>
-    <div class="rb-flow">
-      <div class="rb-step reveal reveal-d1"><div class="rb-ic"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div><div class="rb-t">Customer orders</div><div class="rb-d">Your website or your own app</div></div>
-      <div class="rb-step reveal reveal-d2"><div class="rb-ic"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20M6 15h4"/></svg></div><div class="rb-t">Pays online</div><div class="rb-d">Stripe, Apple Pay · bKash, Nagad in BD</div></div>
-      <div class="rb-step reveal reveal-d3"><div class="rb-ic"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></div><div class="rb-t">Kitchen auto-prints</div><div class="rb-d">Printer + kitchen screen, synced with POS</div></div>
-      <div class="rb-step reveal reveal-d4"><div class="rb-ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17l4-8h5l3 8M10 9l2 8M14 5h3"/></svg></div><div class="rb-t">Pickup or delivery</div><div class="rb-d">Your zones, your riders</div></div>
-    </div>
-    <div class="rb-cta reveal">
-      <div class="rb-stat"><strong>$0</strong><span>commission per order</span></div>
-      <div class="rb-stat"><strong>iOS</strong><span>app live on the App Store</span></div>
-      <div class="rb-stat"><strong class="price" data-bd="৳1,999" data-intl="$69">$69</strong><span>per month, starting</span></div>
-      <a class="btn-blue" href="restaurants.html" data-bd-href="bn/restaurant.html">See features &amp; pricing →</a>
+<div class="stats">
+  <div class="container">
+    <div class="stats-box">
+      <div class="stat"><b>$0</b><span>commission on restaurant orders</span></div>
+      <div class="stat"><b>iOS</b><span>client app live on the App Store</span></div>
+      <div class="stat"><b>4</b><span>countries with active clients</span></div>
+      <div class="stat"><b>8+ yrs</b><span>operations leadership behind every build</span></div>
     </div>
   </div>
-</section>
+</div>
 
-<section id="about" class="section section-alt">
-  <div class="inner">
-    <div class="section-head reveal">
-      <div class="eyebrow">How We Work</div>
-      <h2>From day one to scale — one team, all the way.</h2>
-      <p class="section-lead">One team, from first meeting to growth.</p>
+<section class="section">
+  <div class="container">
+    <div class="head reveal">
+      <span class="eyebrow">What we do</span>
+      <h2 class="h2">Systems that run your business while you sleep</h2>
+      <p class="lead">Start with your problem — we pick the right solution. Every project gets a fixed quote before we start.</p>
     </div>
-    <div class="process-grid">
-      <div class="process-step reveal reveal-d1">
-        <div class="step-circle">01</div>
-        <div class="step-title">Understand your business</div>
-        <p class="step-desc">We learn how you run today and where you lose time and money.</p>
-      </div>
-      <div class="process-step reveal reveal-d2">
-        <div class="step-circle">02</div>
-        <div class="step-title">Build what you actually need</div>
-        <p class="step-desc">Website, app, admin panel — one team builds it all.</p>
-      </div>
-      <div class="process-step reveal reveal-d3">
-        <div class="step-circle">03</div>
-        <div class="step-title">Launch and hand over control</div>
-        <p class="step-desc">Tested, launched, and your team trained.</p>
-      </div>
-      <div class="process-step reveal reveal-d4">
-        <div class="step-circle">04</div>
-        <div class="step-title">Grow, automate, improve</div>
-        <p class="step-desc">We automate, report, and keep improving revenue.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="services" class="section">
-  <div class="inner">
-    <div class="section-head reveal">
-      <div class="eyebrow">What We Do</div>
-      <h2>Beyond restaurants: six more ways we grow your business.</h2>
-      <p class="section-lead">Start with your problem — we pick the right solution.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal reveal-d1">
-        <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg></div>
-        <div class="service-title">Web Development</div>
-        <div class="service-problem">Your website is losing you clients</div>
-        <p class="service-desc">Fast, credible sites that turn visitors into enquiries.</p>
-        <div class="service-price">From <strong class="price" data-bd="৳7,777" data-intl="$699">$699</strong></div>
-      </div>
-      <div class="service-card reveal reveal-d2">
-        <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
-        <div class="service-title">Mobile Apps</div>
-        <div class="service-problem">Your customers are on their phones</div>
-        <p class="service-desc">iOS and Android from one build — one cost, not two.</p>
-        <div class="service-price">From <strong class="price" data-bd="৳79,999" data-intl="$3,999">$3,999</strong></div>
-      </div>
-      <div class="service-card reveal reveal-d3">
-        <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg></div>
-        <div class="service-title">Admin Panels and Order Management</div>
-        <div class="service-problem">You're managing operations on WhatsApp</div>
-        <p class="service-desc">One system for orders, stock and staff — no more WhatsApp chaos.</p>
-        <div class="service-price">From <strong class="price" data-bd="৳19,999" data-intl="$1,499">$1,499</strong></div>
-      </div>
-      <div class="service-card reveal reveal-d4">
-        <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.5L21 8H6"/></svg></div>
-        <div class="service-title">E-Commerce</div>
-        <div class="service-problem">You're selling less than you could</div>
-        <p class="service-desc">Store, checkout and order tracking as one connected platform.</p>
-        <div class="service-price">From <strong class="price" data-bd="৳24,999" data-intl="$1,999">$1,999</strong></div>
-      </div>
-      <div class="service-card reveal reveal-d2">
-        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M19 6a8 8 0 0 1 0 12"/></svg></div>
-        <div class="service-title">Digital Marketing</div>
-        <div class="service-problem">Traffic that doesn't convert</div>
-        <p class="service-desc">Ads and social media aimed at buyers, not just likes.</p>
-        <div class="service-price">From <strong class="price" data-bd="৳7,999" data-intl="$399">$399</strong><span class="price-suf">/mo + ad spend</span></div>
-      </div>
-      <div class="service-card reveal reveal-d3">
-        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
-        <div class="service-title">Business Automation and Reporting</div>
-        <div class="service-problem">Your team is busy but not productive</div>
-        <p class="service-desc">We automate repetitive work and give you live dashboards.</p>
-        <div class="service-price">From <strong class="price" data-bd="৳14,999" data-intl="$999">$999</strong></div>
-      </div>
-    </div>
-    <p class="price-note">Starting prices for a standard scope. Every project gets a fixed quote before we start.</p>
-  </div>
-</section>
-
-<section id="work" class="section section-alt">
-  <div class="inner">
-    <div class="section-head reveal">
-      <div class="eyebrow">Selected Work</div>
-      <h2>Real businesses. Real problems solved.</h2>
-      <p class="section-lead">Five clients, four countries.</p>
-    </div>
-    <div class="projects-grid">
-      <div class="project-card reveal reveal-d1">
-        <img class="project-img" src="images/angies-knb.jpg" alt="Angies KnB"/>
-        <div class="project-body">
-          <div class="project-meta"><span style="font-size:16px;">🇦🇺</span><span class="project-country">Melbourne, Australia</span></div>
-          <div class="project-name">Angie's KnB</div>
-          <a class="live-badge" href="https://apps.apple.com/au/app/angies-kebabs-burgers/id6786436972" target="_blank" rel="noopener"><span class="fc-live"></span><svg viewBox="0 0 24 24"><path d="M16.37 1.43c0 1.14-.49 2.27-1.18 3.08-.74.9-1.99 1.57-2.99 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.57-2.27 1.21-2.98.8-.94 2.14-1.64 3.25-1.68.03.13.05.28.05.43zm4.56 15.71c-.03.07-.46 1.58-1.52 3.12-.94 1.34-1.94 2.71-3.43 2.71-1.52 0-1.9-.88-3.63-.88-1.7 0-2.3.91-3.67.91-1.38 0-2.33-1.26-3.43-2.8C4 18.38 2.97 15.57 2.97 12.92c0-4.28 2.8-6.55 5.55-6.55 1.45 0 2.68.95 3.6.95.87 0 2.22-1.01 3.9-1.01.61 0 2.89.06 4.37 2.19-.13.09-2.38 1.37-2.38 4.19 0 3.26 2.85 4.42 2.96 4.45z"/></svg> iOS app live on the App Store</a>
-          <p class="project-story">Orders came only by phone and walk-in. We built online ordering, an iOS app (live on the App Store) and an admin panel — one system for everything.</p>
-          <div class="project-tags"><span class="tag">Next.js</span><span class="tag">React Native</span><span class="tag">Supabase</span><span class="tag">Marketing</span></div>
-          <a class="project-link" href="https://angiesknb.com" target="_blank">Visit Site</a>
-        </div>
-      </div>
-      <div class="project-card reveal reveal-d2">
-        <img class="project-img" src="images/pharmaco-connect.jpg" alt="Pharmaco Connect"/>
-        <div class="project-body">
-          <div class="project-meta"><span style="font-size:16px;">🇧🇩</span><span class="project-country">Bangladesh</span></div>
-          <div class="project-name">Pharmaco Connect</div>
-          <p class="project-story">Stock and suppliers tracked by hand across branches. We built one bilingual system for inventory, orders and suppliers.</p>
-          <div class="project-tags"><span class="tag">Next.js</span><span class="tag">Vercel</span><span class="tag">Healthcare</span></div>
-          <a class="project-link" href="https://pharmaco-connect.vercel.app" target="_blank">Visit Site</a>
-        </div>
-      </div>
-      <div class="project-card reveal reveal-d3">
-        <img class="project-img" src="images/arctic-peptides.jpg" alt="Arctic Peptides"/>
-        <div class="project-body">
-          <div class="project-meta"><span style="font-size:16px;">🇸🇪</span><span class="project-country">Sweden</span></div>
-          <div class="project-name">Arctic Peptides</div>
-          <p class="project-story">Every product change needed a developer. We built a site with an admin panel — they update it themselves now.</p>
-          <div class="project-tags"><span class="tag">React</span><span class="tag">Admin Panel</span><span class="tag">Health</span></div>
-          <a class="project-link" href="https://arcticpeptides.org" target="_blank">Visit Site</a>
-        </div>
-      </div>
-      <div class="project-card reveal reveal-d4">
-        <img class="project-img" src="images/lavanderia-molino.jpg" alt="Lavanderia Molino"/>
-        <div class="project-body">
-          <div class="project-meta"><span style="font-size:16px;">🇪🇸</span><span class="project-country">Barcelona, Spain</span></div>
-          <div class="project-name">Lavanderia Molino</div>
-          <p class="project-story">Hard to find online. We rebuilt the site mobile-first so local customers find them first.</p>
-          <div class="project-tags"><span class="tag">HTML/CSS</span><span class="tag">Mobile-first</span><span class="tag">Spain</span></div>
-          <a class="project-link" href="https://www.lavanderiamolino.com" target="_blank">Visit Site</a>
-        </div>
-      </div>
-      <div class="project-card reveal" style="grid-column:1/-1;">
-        <img class="project-img" src="images/ashkonabazar.jpg" alt="Ashkonabazar" style="height:220px;"/>
-        <div class="project-body">
-          <div class="project-meta"><span style="font-size:16px;">🇧🇩</span><span class="project-country">Bangladesh</span></div>
-          <div class="project-name">Ashkonabazar.com</div>
-          <p class="project-story">Products listed by hand, no order system. We built the full store and run their social media growth.</p>
-          <div class="project-tags"><span class="tag">Next.js</span><span class="tag">E-Commerce</span><span class="tag">Marketing</span></div>
-          <a class="project-link" href="https://ashkonabazar.com" target="_blank">Visit Site</a>
-        </div>
-      </div>
-    </div>
+    <div class="grid grid-4"><div class="card featured reveal">
+  <span class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span>
+  <h3>Business Automation &amp; Reporting</h3>
+  <p><span class="problem">Your team is busy but not productive.</span> Orders, invoices and follow-ups that run themselves.</p>
+  <span class="price-tag">From&nbsp;<span data-bd="৳14,999">$999</span></span>
+  <a class="btn btn-gold btn-sm" href="services.html#automation">Learn More</a>
+</div><div class="card reveal">
+  <span class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11h18"/><path d="M5 11a7 7 0 0 1 14 0"/><path d="M4 15h16l-1.5 5h-13z"/><path d="M12 4V2"/></svg></span>
+  <h3>Restaurant Ordering System</h3>
+  <p><span class="problem">Paying 30% commission to delivery apps?</span> Your own ordering website and iOS/Android app.</p>
+  <span class="price-tag">From&nbsp;<span data-bd="৳1,999">$69</span>/mo</span>
+  <a class="btn btn-gold btn-sm" href="services.html#restaurant">Learn More</a>
+</div><div class="card reveal">
+  <span class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+  <h3>Custom CRM &amp; Admin Panels</h3>
+  <p><span class="problem">Managing operations on WhatsApp and spreadsheets?</span> One system for orders, stock and staff.</p>
+  <span class="price-tag">From&nbsp;<span data-bd="৳19,999">$1,499</span></span>
+  <a class="btn btn-gold btn-sm" href="services.html#crm">Learn More</a>
+</div><div class="card reveal">
+  <span class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span>
+  <h3>Mobile Apps</h3>
+  <p><span class="problem">Your customers live on their phones.</span> iOS and Android from one build.</p>
+  <span class="price-tag">From&nbsp;<span data-bd="৳79,999">$3,999</span></span>
+  <a class="btn btn-gold btn-sm" href="services.html#apps">Learn More</a>
+</div></div>
+    <p style="text-align:center;margin-top:28px"><a class="link-arrow" href="services.html">View all 8 services →</a></p>
   </div>
 </section>
 
 <section class="section section-dark">
-  <div class="inner">
-    <div class="section-head reveal">
-      <div class="eyebrow">What Clients Say</div>
-      <h2>In their words.</h2>
-      <p class="section-lead">Real feedback from the businesses we work with.</p>
+  <div class="container band">
+    <div class="reveal">
+      <span class="eyebrow">For restaurants</span>
+      <h2 class="h2">Your own ordering system. Zero commission.</h2>
+      <p class="lead" style="margin-bottom:24px">One system from the customer's phone to your kitchen printer — for a flat monthly fee.</p>
+      <div class="band-stats">
+        <div class="band-stat"><b>$0</b><span>commission</span></div>
+        <div class="band-stat"><b>iOS</b><span>app live</span></div>
+        <div class="band-stat"><b><span data-bd="৳1,999">$69</span></b><span>per month</span></div>
+      </div>
+      <div class="hero-btns" style="margin:26px 0 0"><a class="btn btn-gold" href="restaurants.html" data-bd-href="bn/restaurant.html">See the Restaurant System →</a></div>
     </div>
-    <div class="testimonials-grid">
-      <div class="tcard reveal reveal-d1">
-        <div class="tquote-mark">"</div>
-        <p class="tquote">Before this, everything ran through phone calls and messages — orders, updates, confirmations. It was chaotic. Now customers order through the app, the kitchen sees it instantly, and I can actually see what's happening across the business. That visibility alone has changed how I manage things day to day.</p>
-        <div class="tauthor">
-          <div class="tavatar">A</div>
-          <div><div class="tname">Angie's KnB</div><div class="trole">Restaurant Group · Melbourne, Australia</div></div>
+    <ol class="flow reveal">
+      <li><div><b>Customer orders</b><span>Your website or your own app</span></div></li>
+      <li><div><b>Pays online</b><span>Stripe, Apple Pay · bKash, Nagad in Bangladesh</span></div></li>
+      <li><div><b>Kitchen auto-prints</b><span>Printer + kitchen screen, synced with POS</span></div></li>
+      <li><div><b>Pickup or delivery</b><span>Your zones, your riders</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section-white">
+  <div class="container">
+    <div class="head center reveal">
+      <span class="eyebrow">Featured case studies</span>
+      <h2 class="h2">Real businesses. Real problems solved.</h2>
+    </div>
+    <div class="grid grid-2"><article class="case reveal" data-tags="ecommerce,mobile,restaurant">
+  <div class="case-img"><img src="images/angies-knb.jpg" alt="Angie's KnB website screenshot" width="800" height="383" loading="lazy"/></div>
+  <div class="case-body">
+    <div class="case-meta"><span class="price-tag">Melbourne, Australia</span><span>Restaurant group · 3 locations</span></div>
+    <h3>Angie's KnB</h3>
+    <p>Orders came only by phone and walk-in. We built online ordering, an iOS app and an admin panel — one system for everything.</p>
+    <div class="tags"><span class="tag">Next.js</span><span class="tag">React Native</span><span class="tag">Supabase</span><span class="tag">Marketing</span></div>
+    <a class="btn btn-gold btn-sm" href="portfolio.html">View Case Study</a>
+  </div>
+</article><article class="case reveal" data-tags="ecommerce,crm">
+  <div class="case-img"><img src="images/pharmaco-connect.jpg" alt="Pharmaco Connect website screenshot" width="800" height="383" loading="lazy"/></div>
+  <div class="case-body">
+    <div class="case-meta"><span class="price-tag">Bangladesh</span><span>Healthcare · Pharmacy</span></div>
+    <h3>Pharmaco Connect</h3>
+    <p>Stock and suppliers were tracked by hand across branches. We built one bilingual system for inventory, orders and suppliers.</p>
+    <div class="tags"><span class="tag">Next.js</span><span class="tag">Vercel</span><span class="tag">Bilingual</span></div>
+    <a class="btn btn-gold btn-sm" href="portfolio.html">View Case Study</a>
+  </div>
+</article><article class="case reveal" data-tags="ecommerce,crm">
+  <div class="case-img"><img src="images/arctic-peptides.jpg" alt="Arctic Peptides website screenshot" width="800" height="383" loading="lazy"/></div>
+  <div class="case-body">
+    <div class="case-meta"><span class="price-tag">Sweden</span><span>Health · E-commerce</span></div>
+    <h3>Arctic Peptides</h3>
+    <p>Every product change needed a developer. We built a site with an admin panel — they update it themselves now.</p>
+    <div class="tags"><span class="tag">React</span><span class="tag">Admin Panel</span></div>
+    <a class="btn btn-gold btn-sm" href="portfolio.html">View Case Study</a>
+  </div>
+</article><article class="case reveal" data-tags="ecommerce">
+  <div class="case-img"><img src="images/ashkonabazar.jpg" alt="Ashkonabazar.com website screenshot" width="800" height="383" loading="lazy"/></div>
+  <div class="case-body">
+    <div class="case-meta"><span class="price-tag">Bangladesh</span><span>Retail · E-commerce</span></div>
+    <h3>Ashkonabazar.com</h3>
+    <p>Products were listed by hand with no order system. We built the full store and run their social media growth.</p>
+    <div class="tags"><span class="tag">Next.js</span><span class="tag">E-commerce</span><span class="tag">Marketing</span></div>
+    <a class="btn btn-gold btn-sm" href="portfolio.html">View Case Study</a>
+  </div>
+</article></div>
+    <p style="text-align:center;margin-top:28px"><a class="link-arrow" href="portfolio.html">See the full portfolio →</a></p>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="container quote-wrap">
+    <span class="eyebrow">What clients say</span>
+    <div class="quote-mark" aria-hidden="true">“</div>
+    <div class="slides" aria-live="polite"><div class="slide active">
+  <blockquote>Before this, everything ran through phone calls and messages — orders, updates, confirmations. It was chaotic. Now customers order through the app, the kitchen sees it instantly, and I can actually see what's happening across the business.</blockquote>
+  <div class="who"><span class="avatar">A</span><div><b>Angie's KnB</b><span>Restaurant Group · Melbourne, Australia</span></div></div>
+</div><div class="slide">
+  <blockquote>We were tracking stock across multiple locations in spreadsheets. By the time something was out, we had already lost the sale. The system MS Biz Studio built keeps everything updated in real time — our team spends a lot less time on admin.</blockquote>
+  <div class="who"><span class="avatar">P</span><div><b>Pharmaco Connect</b><span>Pharmacy Management · Bangladesh</span></div></div>
+</div></div>
+    <div class="slider-ctrl">
+      <button class="round" type="button" data-prev aria-label="Previous testimonial">←</button>
+      <div class="dots"><button class="dot" type="button" aria-label="Show testimonial 1" aria-current="true"></button><button class="dot" type="button" aria-label="Show testimonial 2" aria-current="false"></button></div>
+      <button class="round" type="button" data-next aria-label="Next testimonial">→</button>
+    </div>
+  </div>
+</section>
+
+<section class="section section-mid">
+  <div class="container who-grid">
+    <div class="reveal">
+      <span class="eyebrow">Who we are</span>
+      <h2 class="h2">Small team. Real experience.</h2>
+      <p class="lead" style="margin-bottom:24px">Before building software, our founder ran operations for large teams with full P&amp;L responsibility. We know where businesses lose time and money — and we fix it with systems, not slides.</p>
+      <a class="btn btn-gold btn-sm" href="about.html">Learn More</a>
+    </div>
+    <div class="team reveal"><div class="member"><span class="initial">M</span><b>Mofassal H.</b><span>Founder</span></div><div class="member"><span class="initial">S</span><b>Sabrina Ali Tandra</b><span>Co-Founder · Security</span></div><div class="member"><span class="initial">T</span><b>Tahsin Alom Hadin</b><span>Web Developer</span></div></div>
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <div class="container">
+    <div class="cta-band">
+      <h2>Ready to automate?</h2>
+      <a class="btn btn-gold" href="contact.html">Start Your Digital Transformation →</a>
+    </div>
+    <div class="foot-grid">
+      <div class="about-col">
+        <a class="brand" href="index.html"><img src="images/logo-white.png" alt="" width="37" height="30"/>MS Biz Studio</a>
+        <p>Restaurant systems, custom software and business automation — from Sweden, for clients worldwide.</p>
+        <div class="socials">
+          <a href="https://facebook.com/msbizstudio" target="_blank" rel="noopener" aria-label="MS Biz Studio on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg></a>
+          <a href="https://wa.me/46765606712" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.23 9.43-9.44 9.43zm8.03-17.46A11.28 11.28 0 0 0 12.05.72C5.8.72.71 5.8.71 12.05c0 2 .52 3.95 1.52 5.67L.62 23.6l6.02-1.58a11.3 11.3 0 0 0 5.41 1.38h.01c6.25 0 11.34-5.09 11.34-11.34 0-3.03-1.18-5.88-3.32-8.02z"/></svg></a>
         </div>
       </div>
-      <div class="tcard reveal reveal-d2">
-        <div class="tquote-mark">"</div>
-        <p class="tquote">We were tracking stock across multiple locations in spreadsheets. By the time something was out, we had already lost the sale. The system MS Biz Studio built keeps everything updated in real time — our team spends a lot less time on admin and a lot more time on the actual business.</p>
-        <div class="tauthor">
-          <div class="tavatar">P</div>
-          <div><div class="tname">Pharmaco Connect</div><div class="trole">Pharmacy Management · Bangladesh</div></div>
-        </div>
-      </div>
+      <div><h4>SITEMAP</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="restaurants.html" data-bd-href="bn/restaurant.html">For Restaurants</a></li></ul></div>
+      <div><h4>SERVICES</h4><ul><li><a href="services.html#automation">Automation</a></li><li><a href="services.html#restaurant">Restaurant Systems</a></li><li><a href="services.html#crm">CRM &amp; Admin Panels</a></li><li><a href="services.html#apps">Mobile Apps</a></li><li><a href="services.html#ecommerce">E-commerce</a></li></ul></div>
+      <div><h4>CONTACT</h4><ul><li><a href="mailto:automation@msbizstudio.com">automation@msbizstudio.com</a></li><li><a href="https://wa.me/46765606712" target="_blank" rel="noopener">WhatsApp +46 76 560 67 12</a></li><li>msbizstudio.com</li><li>Stockholm, Sweden</li></ul></div>
     </div>
+    <div class="foot-bottom"><span>© 2026 MS Biz Studio. Sweden and worldwide.</span><span>Australia · Spain · Sweden · Bangladesh</span></div>
   </div>
-</section>
-
-<section class="section">
-  <div class="inner">
-    <div class="section-head reveal">
-      <div class="eyebrow">Why MS Biz Studio</div>
-      <h2>Three honest reasons clients choose us.</h2>
-      <p class="section-lead">What actually makes the difference.</p>
-    </div>
-    <div class="why-grid">
-      <div class="why-card reveal reveal-d1">
-        <div class="why-num">01</div>
-        <div class="why-title">We've run operations, not just code</div>
-        <p class="why-desc">8+ years leading large teams with full P&L. We know where businesses break as they grow.</p>
-      </div>
-      <div class="why-card reveal reveal-d2">
-        <div class="why-num">02</div>
-        <div class="why-title">One team. No handoffs.</div>
-        <p class="why-desc">Website, app and marketing — one team, one person to call.</p>
-      </div>
-      <div class="why-card reveal reveal-d3">
-        <div class="why-num">03</div>
-        <div class="why-title">We build for after launch</div>
-        <p class="why-desc">Reporting, automation and marketing keep working long after launch.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="team" class="section section-alt">
-  <div class="inner">
-    <div class="section-head reveal">
-      <div class="eyebrow">The People</div>
-      <h2>Small team. Real experience.</h2>
-      <p class="section-lead">You'll know exactly who builds your project.</p>
-    </div>
-    <div class="team-grid">
-      <div class="team-card featured reveal reveal-d1">
-        <div class="mavatar">M</div>
-        <div class="mname">Mofassal H.</div>
-        <div class="mrole">Founder</div>
-        <p class="mbio">Spent <strong>8+ years at Bikroy.com (Saltside Technologies)</strong> — Bangladesh's largest online marketplace — leading large operations teams with full P&L responsibility. Saw firsthand how the wrong digital systems slow businesses down and how the right ones unlock growth. Built MS Biz Studio from that operational understanding. Now based in Sweden, working with clients across four countries.</p>
-        <div class="mtags"><span class="tag">Operations</span><span class="tag">Strategy</span><span class="tag">P&L</span><span class="tag">Sweden</span></div>
-      </div>
-      <div class="team-card reveal reveal-d2">
-        <div class="mavatar">S</div>
-        <div class="mname">Sabrina Ali Tandra</div>
-        <div class="mrole">Co-Founder</div>
-        <p class="mbio"><strong>MSc in Cyber Security from KTH Royal Institute of Technology</strong>, Stockholm — one of Europe's top engineering universities. Handles security architecture and data protection across every project. Security is built in from day one, not added later.</p>
-        <div class="mtags"><span class="tag">Cybersecurity</span><span class="tag">KTH</span><span class="tag">GDPR</span></div>
-      </div>
-      <div class="team-card reveal reveal-d3">
-        <div class="mavatar">T</div>
-        <div class="mname">Tahsin Alom Hadin</div>
-        <div class="mrole">Web Developer</div>
-        <p class="mbio">Frontend developer and CSE student. Builds and maintains the client-facing code on every project — clean, fast, and maintainable. The person who makes the designs real.</p>
-        <div class="mtags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Tailwind</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section section-dark">
-  <div class="cta-inner">
-    <div class="section-head reveal">
-      <div class="eyebrow">Get In Touch</div>
-      <h2>Tell us what's slowing your business down.</h2>
-    </div>
-    <p class="reveal reveal-d1">We'll tell you honestly whether we can help — and how. No sales call, no pitch deck. Just a straight conversation about your situation. Most clients hear back within a few hours.</p>
-    <div class="cta-btns reveal reveal-d2">
-      <a href="https://wa.me/46765606712" class="btn-white">💬 WhatsApp Us</a>
-      <a href="mailto:hello@msbizstudio.com" class="btn-outline">✉️ Send Email</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-logo">
-    <img src="images/icon.png" alt="MS Biz Studio"/>
-    <span>MS Biz Studio</span>
-  </div>
-  <p>© 2026 MS Biz Studio. Sweden and Worldwide.</p>
 </footer>
-
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, {threshold: 0.12});
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  document.querySelectorAll('.cred-card, .cred-strip-footer').forEach(el => observer.observe(el));
-
-
-</script>
-<a class="wa-float" href="https://wa.me/46765606712" target="_blank" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.23 9.43-9.44 9.43zm8.03-17.46A11.28 11.28 0 0 0 12.05.72C5.8.72.71 5.8.71 12.05c0 2 .52 3.95 1.52 5.67L.62 23.6l6.02-1.58a11.3 11.3 0 0 0 5.41 1.38h.01c6.25 0 11.34-5.09 11.34-11.34 0-3.03-1.18-5.88-3.32-8.02z"/></svg></a>
-<script>
-(function(){
-  function toBD(){
-    document.querySelectorAll('.price').forEach(function(el){el.textContent=el.getAttribute('data-bd');});
-    document.querySelectorAll('.price-suf').forEach(function(el){el.textContent='/মাস + ad খরচ';});
-    document.querySelectorAll('[data-bd-href]').forEach(function(el){el.setAttribute('href',el.getAttribute('data-bd-href'));});
-  }
-  fetch('/api/geo').then(function(r){return r.json();}).then(function(d){if(d.country==='BD')toBD();}).catch(function(){
-    try{var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';if(/Asia\/(Dhaka|Dacca)/.test(tz))toBD();}catch(e){}
-  });
-})();
-</script>
+<a class="wa-float" href="https://wa.me/46765606712" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.23-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.23 9.43-9.44 9.43zm8.03-17.46A11.28 11.28 0 0 0 12.05.72C5.8.72.71 5.8.71 12.05c0 2 .52 3.95 1.52 5.67L.62 23.6l6.02-1.58a11.3 11.3 0 0 0 5.41 1.38h.01c6.25 0 11.34-5.09 11.34-11.34 0-3.03-1.18-5.88-3.32-8.02z"/></svg></a>
+<script src="assets/site.js" defer></script>
 </body>
 </html>
