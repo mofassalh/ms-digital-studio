@@ -4,6 +4,7 @@
 .t-restaurant{--c:#1F5C4A;--cd:#153F33;--tint:#E4EEEA;--line:#C5DCD3;--soft:#F1F6F4;--bg:#FFFAF5;--ink:#2A1F1B;--muted:#5C4D45;--border:#F1E6DC;--foot:#FFF6EF;--under:#E2C17A}
 .t-pharmacy{--c:#1D5F8A;--cd:#154766;--tint:#E6EFF6;--line:#C9DAE8;--soft:#F1F6FA;--bg:#F9FBFC;--ink:#1E2A33;--muted:#4A5963;--border:#E3EAF0;--foot:#F1F6FA;--under:#9EC3DE}
 .t-ecommerce{--c:#5B3E8C;--cd:#432C6A;--tint:#EFEAF6;--line:#DCD2EA;--soft:#F6F2FB;--bg:#FBFAFD;--ink:#241F2E;--muted:#514A5E;--border:#ECE7F3;--foot:#F6F2FB;--under:#C4B2E0}
+.t-marketing{--c:#A0305C;--cd:#7A2246;--tint:#F8E6EE;--line:#EFCBDA;--soft:#FCF2F6;--bg:#FFFAFC;--ink:#2E1F25;--muted:#5E4A53;--border:#F2E2E9;--foot:#FCF0F5;--under:#EDA9C4}
 .t-automation{--c:#8C5A14;--cd:#6B440E;--tint:#F7EEDD;--line:#EAD7B5;--soft:#FBF5EA;--bg:#FFFCF7;--ink:#2B2117;--muted:#5E5040;--border:#F0E6D6;--foot:#FBF3E6;--under:#E8C27E}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;font-family:'Hind Siliguri',system-ui,sans-serif;font-size:18px;line-height:1.6;color:var(--ink);background:var(--bg)}
@@ -103,7 +104,7 @@ h3{font-size:20px;line-height:1.4;font-weight:700}
 .quote footer{margin-top:8px;font-size:14px;color:var(--muted)}
 
 /* Home: services, clients, team */
-.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
 .svc a{text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:8px}
 .svc a:hover{border-color:var(--k)}
 .svc .ico{width:44px;height:44px;border-radius:12px;background:var(--k)}
@@ -121,7 +122,7 @@ h3{font-size:20px;line-height:1.4;font-weight:700}
 .more b{font-size:18px}
 .flow{display:flex;flex-direction:column;gap:10px}
 .step{display:flex;align-items:center;gap:12px;border:1px solid var(--border);border-radius:14px;padding:12px 14px;background:#fff}
-.step .n{flex:none;width:32px;height:32px;border-radius:50%;background:var(--tint);color:var(--cd);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.step .n{flex:none;min-width:32px;padding:0 8px;height:32px;border-radius:999px;background:var(--tint);color:var(--cd);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
 .step span:nth-child(2){flex:1}
 .step .ok{font-size:14px;font-weight:600;color:#1F6B4A;background:#EAF6EF;padding:2px 10px;border-radius:999px;white-space:nowrap}
 .how{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
@@ -148,6 +149,15 @@ form.lead input:focus,form.lead select:focus,form.lead textarea:focus{outline:2p
 .msg{font-size:14px;font-weight:600;text-align:center;min-height:1.6em}
 .msg.ok{color:#1F6B4A}.msg.err{color:#A83221}
 .form-foot{border-top:1px solid var(--border);padding-top:18px;text-align:center;font-size:14px;color:var(--muted)}
+
+/* Email button + popup form (the inbox address never appears on the site) */
+.link-btn{font:inherit;font-size:14px;font-weight:600;color:var(--c);background:none;border:0;padding:0 2px;min-height:44px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.link-btn:hover{color:var(--cd)}
+.foot .link-btn{color:inherit}
+dialog.mail{border:0;border-radius:24px;padding:0;width:min(520px,calc(100% - 32px));max-height:calc(100% - 32px);color:var(--ink);background:#fff;box-shadow:0 24px 64px rgba(0,0,0,.18)}
+dialog.mail::backdrop{background:rgba(20,24,28,.45)}
+dialog.mail .form-card{border:0;border-radius:0;padding:28px 22px;max-width:none}
+dialog.mail .close{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;border:0;background:var(--soft);color:var(--ink);font-size:22px;line-height:1;cursor:pointer}
 
 /* Footer */
 .foot{background:var(--foot);border-top:1px solid var(--border)}

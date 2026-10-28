@@ -1,6 +1,30 @@
 /* MS Biz Studio — Bangla pages: lead forms go through our own /api/contact,
    so the destination inbox never appears on the site. */
 (function () {
+  /* "Email us" opens a small message form; it is sent through /api/contact,
+     so the inbox address is never shown on the page */
+  var dlg = document.createElement('dialog');
+  dlg.className = 'mail';
+  dlg.setAttribute('aria-label', 'ইমেইল করুন');
+  dlg.innerHTML =
+    '<button type="button" class="close" aria-label="বন্ধ করুন">×</button>' +
+    '<div class="form-card"><div class="head" style="margin:0"><h2>ইমেইল করুন</h2><p class="muted">মেসেজ লিখুন, আমরা উত্তর দেব।</p></div>' +
+    '<form class="lead" data-need="Email (BD)" novalidate>' +
+    '<label>আপনার নাম<input name="name" type="text" autocomplete="name" required></label>' +
+    '<label>ফোন নম্বর<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="১১ সংখ্যার মোবাইল নম্বর" required></label>' +
+    '<label>মেসেজ<textarea name="details" rows="4"></textarea></label>' +
+    '<div class="hp" aria-hidden="true"><label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>' +
+    '<button class="btn" type="submit">পাঠান</button><p class="msg" role="status" aria-live="polite"></p></form></div>';
+  document.body.appendChild(dlg);
+  dlg.querySelector('.close').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  document.querySelectorAll('[data-mail]').forEach(function (b) {
+    b.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (dlg.showModal) dlg.showModal(); else location.hash = '#contact';
+      var f = dlg.querySelector('input[name="name"]'); if (f) f.focus();
+    });
+  });
   var toLatin = function (s) {
     return String(s || '').replace(/[০-৯]/g, function (d) { return '০১২৩৪৫৬৭৮৯'.indexOf(d); });
   };
