@@ -28,24 +28,32 @@ export default async function handler(request) {
   const name = clean(body.name, 120);
   const email = clean(body.email, 200);
   const details = String(body.details || '').trim().slice(0, 5000);
-  if (!name || !details || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  // Bangla pages ask for a phone number instead of an email address
+  const phone = clean(body.phone, 30).replace(/[^\d+]/g, '');
+  const validPhone = phone.replace(/\D/g, '').length >= 10;
+
+  if (!name) return json({ ok: false, error: 'Missing fields' }, 400);
+  if (!validPhone && (!validEmail || !details)) {
     return json({ ok: false, error: 'Missing fields' }, 400);
   }
   const need = clean(body.need, 60) || 'Not sure yet';
 
   const payload = {
     _subject: `New project enquiry: ${need} — ${name}`,
-    _replyto: email,
     _template: 'table',
     _captcha: 'false',
     Name: name,
-    Email: email,
+    Email: validEmail ? email : '-',
+    Phone: phone || '-',
     Company: clean(body.company, 160) || '-',
+    City: clean(body.city, 80) || '-',
     Need: need,
     Budget: clean(body.budget, 60) || '-',
-    'Project details': details,
+    'Project details': details || '-',
     'Sent from': 'msbizstudio.com' + clean(body.page, 80),
   };
+  if (validEmail) payload._replyto = email;
 
   try {
     const r = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(to), {

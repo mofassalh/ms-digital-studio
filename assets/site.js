@@ -134,6 +134,22 @@
     document.querySelectorAll('[data-bd]').forEach(function (el) { el.textContent = el.getAttribute('data-bd'); });
     document.querySelectorAll('[data-bd-href]').forEach(function (el) { el.setAttribute('href', el.getAttribute('data-bd-href')); });
   }
+  /* Bangladesh visitors on the homepage go to the Bangla homepage,
+     unless they chose English (?lang=en or the "English" link on a Bangla page) */
+  var path = location.pathname;
+  if (path === '/' || path === '/index.html') {
+    var keepEn = false;
+    try {
+      if (/lang=en/.test(location.search)) localStorage.setItem('msbiz_lang', 'en');
+      keepEn = localStorage.getItem('msbiz_lang') === 'en';
+    } catch (e) {}
+    if (!keepEn) {
+      fetch('/api/geo').then(function (r) { return r.json(); }).then(function (d) {
+        if (d.country === 'BD') location.replace('/bn/');
+      }).catch(function () {});
+    }
+  }
+
   if (document.querySelector('[data-bd],[data-bd-href]')) {
     fetch('/api/geo').then(function (r) { return r.json(); }).then(function (d) {
       if (d.country === 'BD') toBD();
