@@ -27,14 +27,15 @@ h3{font-size:20px;line-height:1.4;font-weight:700}
 
 /* Header */
 .top{background:#fff;border-bottom:1px solid var(--border)}
-.top .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;padding-bottom:14px}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;padding-bottom:12px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
-.brand img{width:52px;height:auto}
+.brand{min-width:0}
+.brand img{width:46px;height:auto;flex:none}
 .brand b{display:block;font-size:18px;line-height:1.25}
 .brand span{display:block;font-size:14px;color:var(--muted);line-height:1.25}
-.top-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.top-right{display:flex;align-items:center;gap:10px;flex:none}
 .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:14px;font-weight:600;background:#fff}
-.lang>*{padding:0 14px;min-height:44px;display:inline-flex;align-items:center}
+.lang>*{padding:0 12px;min-height:40px;display:inline-flex;align-items:center}
 .lang [aria-current]{background:var(--c);color:#fff}
 .lang a{color:var(--c);text-decoration:none}
 .lang a:hover{background:var(--soft)}
@@ -106,6 +107,12 @@ h3{font-size:20px;line-height:1.4;font-weight:700}
 .svc a{text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:8px}
 .svc a:hover{border-color:var(--k)}
 .svc .ico{width:44px;height:44px;border-radius:12px;background:var(--k)}
+.svc .thumb{display:block;margin:-6px -6px 6px}
+.svc .thumb img{width:100%;height:auto;border-radius:12px;border:1px solid var(--border)}
+.reviews{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 12px;-webkit-overflow-scrolling:touch}
+.reviews>*{flex:0 0 min(86%,440px);scroll-snap-align:start;margin:0}
+.reviews:focus-visible{outline:2px solid var(--c);outline-offset:4px;border-radius:12px}
+.swipe{display:none;text-align:center;font-size:14px;color:var(--muted);margin-top:4px}
 .svc b{font-size:20px}
 .svc .go{font-size:14px;font-weight:600;color:var(--k)}
 .more{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
@@ -148,6 +155,9 @@ form.lead input:focus,form.lead select:focus,form.lead textarea:focus{outline:2p
 .foot a{font-weight:600}
 
 @media (max-width:640px){
+  .hide-m{display:none}
+  .swipe{display:block}
+  .brand b{font-size:16px}
   .sec{padding:48px 0}
   .hero{padding-top:32px;padding-bottom:48px;gap:36px}
   .hero-text .btn{align-self:stretch}

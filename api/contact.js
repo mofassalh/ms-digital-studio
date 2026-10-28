@@ -34,7 +34,7 @@ export default async function handler(request) {
   const validPhone = phone.replace(/\D/g, '').length >= 10;
 
   if (!name) return json({ ok: false, error: 'Missing fields' }, 400);
-  if (!validPhone && (!validEmail || !details)) {
+  if (!validPhone && !validEmail) {
     return json({ ok: false, error: 'Missing fields' }, 400);
   }
   const need = clean(body.need, 60) || 'Not sure yet';
