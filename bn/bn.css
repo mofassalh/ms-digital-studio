@@ -206,7 +206,7 @@ dialog.mail .close{position:absolute;top:10px;right:10px;width:44px;height:44px;
 }
 
 /* ===== v2 wow layer ===== */
-.v2 h1,.v2 h2{font-family:'Noto Serif Bengali','Hind Siliguri',Georgia,serif;font-weight:700;letter-spacing:-.2px}
+.v2 h1,.v2 h2{font-family:'Noto Serif Bengali','Noto Serif','Hind Siliguri',Georgia,serif;font-weight:700;letter-spacing:-.2px}
 .banner{min-height:min(78vh,680px)}
 .banner>img{animation:slowzoom 18s ease-out both}
 @keyframes slowzoom{from{transform:scale(1.08)}to{transform:scale(1)}}
@@ -230,7 +230,7 @@ dialog.mail .close{position:absolute;top:10px;right:10px;width:44px;height:44px;
 .rates button{font:inherit;font-size:14px;font-weight:600;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
 .rates button[aria-pressed=true]{background:var(--brand);border-color:var(--brand);color:#fff}
 .calc-out{background:#FDF0EE;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:6px;text-align:center}
-.calc-out .num{font-family:'Noto Serif Bengali','Hind Siliguri',serif;font-size:40px;line-height:1.2;font-weight:700;color:#A83221}
+.calc-out .num{font-family:'Noto Serif Bengali','Noto Serif','Hind Siliguri',serif;font-size:40px;line-height:1.2;font-weight:700;color:#A83221}
 .calc-out .keep{margin-top:10px;padding-top:12px;border-top:1px solid #F3CFC9;color:#16583C;font-weight:600}
 /* laptop frame */
 .laptop{max-width:640px;margin:0 auto;padding:0 5%}
@@ -265,3 +265,13 @@ html{overflow-x:clip}
 .devices .phone.front{right:0;width:28%}
 .devices .phone.back{right:22%;width:24%;bottom:22px;opacity:.97}
 @media (max-width:640px){.devices .phone{border-width:4px;border-radius:16px}}
+/* v2 homepage */
+.svc2{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.svc2 a{text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease}
+.svc2 a:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,30,30,.12);color:var(--ink)}
+.svc2 img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.svc2 span.t{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.svc2 b{font-size:20px;font-family:'Noto Serif Bengali','Noto Serif','Hind Siliguri',Georgia,serif}
+.svc2 .go{font-size:14px;font-weight:600;color:var(--brand);margin-top:auto}
+.btn-row.left{justify-content:flex-start}
+@media (max-width:640px){.btn-row.left .btn{flex:1 1 auto}}
