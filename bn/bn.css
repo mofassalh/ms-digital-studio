@@ -257,3 +257,11 @@ dialog.mail .close{position:absolute;top:10px;right:10px;width:44px;height:44px;
 body.v2{overflow-x:clip}
 @media (max-width:640px){.mock .stamp{right:4px}}
 html{overflow-x:clip}
+/* laptop + phones composition */
+.devices{position:relative;padding:0 22% 36px 0}
+.devices .laptop{padding:0;max-width:none}
+.devices .phone{position:absolute;bottom:0;border:6px solid #1F2326;border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 18px 40px rgba(20,30,30,.22)}
+.devices .phone img{width:100%;height:auto}
+.devices .phone.front{right:0;width:28%}
+.devices .phone.back{right:22%;width:24%;bottom:22px;opacity:.97}
+@media (max-width:640px){.devices .phone{border-width:4px;border-radius:16px}}
