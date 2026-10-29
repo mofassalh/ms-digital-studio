@@ -14,7 +14,7 @@
 <link rel="alternate" hreflang="bn" href="https://msbizstudio.com/bn/restaurant.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Serif+Bengali:wght@600;700&display=swap">
 <link rel="preload" as="image" href="/images/hero/restaurant.jpg" imagesrcset="/images/hero/restaurant-sm.jpg 800w, /images/hero/restaurant.jpg 1376w" imagesizes="100vw">
 <link rel="stylesheet" href="bn.css">
 </head>
@@ -36,13 +36,14 @@
 <h1>প্রতি অর্ডারে ৩০% পর্যন্ত কমিশন দেওয়া বন্ধ করুন। নিজের অর্ডার নিজে নিন।</h1>
 <p class="muted">আপনার রেস্টুরেন্টের নিজের নামে ওয়েবসাইট আর অ্যাপ। অর্ডার আসবে সরাসরি আপনার কাছে, গ্রাহকও থাকবে আপনার।</p>
 <a class="btn" href="#pilot">পাইলটে যোগ দিন, প্রথম ১ মাস ফ্রি</a>
+<ul class="trust"><li>মেলবোর্নে চালু আছে</li><li>অ্যাপ স্টোরে আছে</li><li>৪ দেশে আমাদের গ্রাহক</li></ul>
 </div>
 </div>
 </section>
 
 <section class="sec">
 <div class="wrap split">
-<div class="text">
+<div class="text reveal-up">
 <p class="kicker">একটা অর্ডারের হিসাব</p>
 <h2>৳১,০০০-এর অর্ডারে ডেলিভারি অ্যাপ নিয়ে যায় ৳৩০০</h2>
 <p class="muted">রান্না আপনার, পরিশ্রম আপনার, অথচ প্রতি অর্ডারের বড় অংশ চলে যায় অ্যাপের কাছে। আর যে গ্রাহক বারবার কেনেন, তার নাম-নম্বরও থাকে অ্যাপের কাছে।</p>
@@ -66,8 +67,29 @@
 </div>
 <div class="gain">
 <p class="small">আমাদের সিস্টেমে</p>
-<p style="font-size:20px;font-weight:700">আপনি পাবেন ৳১,০০০</p>
+<p style="font-size:20px;font-weight:700">আপনি পাবেন <span data-count="1000" data-from="700">৳১,০০০</span></p>
 </div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec" style="padding-top:0">
+<div class="wrap">
+<div class="head reveal-up"><p class="kicker">নিজের হিসাব নিজে দেখুন</p><h2>আপনার রেস্টুরেন্ট বছরে কত টাকা কমিশন দিচ্ছে?</h2></div>
+<div class="calc reveal-up">
+<div style="display:flex;flex-direction:column;gap:22px">
+<label>মাসে ডেলিভারি অ্যাপে কত টাকার অর্ডার আসে?
+<output class="big" data-sales>৳৩,০০,০০০</output>
+<input type="range" min="50000" max="2000000" step="10000" value="300000" aria-label="মাসিক অর্ডারের পরিমাণ"></label>
+<div style="display:flex;flex-direction:column;gap:10px"><span class="small" style="font-weight:600">অ্যাপ কত শতাংশ কমিশন নেয়?</span>
+<div class="rates"><button type="button" data-rate="0.2" aria-pressed="false">২০%</button><button type="button" data-rate="0.25" aria-pressed="false">২৫%</button><button type="button" data-rate="0.3" aria-pressed="true">৩০%</button></div></div>
+</div>
+<div class="calc-out" aria-live="polite">
+<p class="small" style="color:#A83221">বছরে কমিশনে চলে যাচ্ছে</p>
+<p class="num" data-year>৳১০,৮০,০০০</p>
+<p class="small" style="color:#A83221">মাসে <span data-month>৳৯০,০০০</span></p>
+<p class="keep small">নিজের সিস্টেমে এই টাকা থাকবে আপনার কাছে</p>
 </div>
 </div>
 </div>
@@ -76,7 +98,7 @@
 <section class="band sec">
 <div class="wrap">
 <h2 style="margin-bottom:20px">যা যা পাবেন</h2>
-<ul class="plain">
+<ul class="plain reveal-up">
 <li><h3>নিজের নামে ওয়েবসাইট আর অ্যাপ</h3><p class="muted">আপনার লোগো, আপনার রং, আপনার মেনু। ফেসবুক পেজ, হোয়াটসঅ্যাপ বা টেবিলের QR থেকে গ্রাহক সরাসরি অর্ডার দেবেন।</p></li>
 <li><h3>টাকা সরাসরি আপনার অ্যাকাউন্টে</h3><p class="muted">বিকাশ, নগদ, কার্ড বা ক্যাশ অন ডেলিভারি। গ্রাহক যেভাবে চান সেভাবে দেবেন, কোনো কমিশন কাটা হবে না।</p></li>
 <li><h3>অর্ডার যাবে সোজা রান্নাঘরে</h3><p class="muted">নতুন অর্ডার এলে কিচেন স্ক্রিনে দেখা যাবে আর প্রিন্টারে নিজে থেকেই ছাপা হবে। খাতায় লেখার দরকার নেই।</p></li>
@@ -87,8 +109,8 @@
 
 <section class="sec">
 <div class="wrap split">
-<div><div class="shot"><img src="../images/angies-knb.jpg" alt="Angie's KnB-এর ওয়েবসাইট" width="800" height="383" loading="lazy"></div></div>
-<div class="text">
+<div class="reveal-up"><div class="laptop"><div class="screen"><img src="../images/angies-knb.jpg" alt="Angie's KnB-এর ওয়েবসাইট" width="800" height="383" loading="lazy"></div><div class="base" aria-hidden="true"></div></div></div>
+<div class="text reveal-up">
 <p class="kicker">মেলবোর্নে চালু আছে</p>
 <h2>Angie's KnB, তিন শাখার রেস্টুরেন্ট</h2>
 <p class="muted">আগে অর্ডার আসত শুধু ফোনে আর দোকানে এসে। এখন গ্রাহকরা ওয়েবসাইট আর আইফোন অ্যাপে অর্ডার দেন, রান্নাঘর সাথে সাথে দেখে, আর মালিক তিনটা শাখা এক জায়গা থেকে চালান।</p>
@@ -102,6 +124,7 @@
 </section>
 
 <section class="band sec" id="pilot">
+<div class="sticky-cta" data-hide-at="#pilot"><a class="btn" href="#pilot">পাইলটে যোগ দিন, ১ মাস ফ্রি</a></div>
 <div class="wrap">
 <div class="form-card">
 <div class="head" style="margin:0"><h2>পাইলট: প্রথম কয়েকটা রেস্টুরেন্টের জন্য ১ মাস ফ্রি</h2>
